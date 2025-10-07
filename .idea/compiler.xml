@@ -8,20 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="rielarmoryangular" />
       </profile>
-      <profile name="Annotation profile for rielarmory" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.40/lombok-1.18.40.jar" />
-        </processorPath>
-        <module name="rielarmoryspringboot" />
-      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="rielarmoryspringboot" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="rielarmoryspringboot" options="-parameters" />
+      <module name="rielarmoryspringboot" options="" />
     </option>
   </component>
 </project>
