@@ -7,15 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="rielarmoryangular" />
+        <module name="rielarmoryspringboot" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="rielarmoryspringboot" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="rielarmoryspringboot" options="" />
+      <module name="rielarmoryangular" options="-parameters" />
+      <module name="rielarmoryspringboot" options="-parameters" />
     </option>
   </component>
 </project>
