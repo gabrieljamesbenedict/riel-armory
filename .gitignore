@@ -1,62 +1,63 @@
+# ============================================================
+# Global IDE and Editor Files
+# ============================================================
 .idea/
-shelf/
-.idea/workspace.xml
-mavenHomeManager.xml
 *.iml
+.shelf/
+.vscode/
+*.sublime-workspace
+*.launch
+.c9/
+.project
+.classpath
+.settings/
+.history/
 
-target/
-
-*.log
-
+# ============================================================
+# System Files
+# ============================================================
 .DS_Store
 Thumbs.db
 
+# ============================================================
+# Maven Build Artifacts
+# ============================================================
+target/
+*.log
+mavenHomeManager.xml
+
+# ============================================================
+# Java Output (non-Maven)
+# ============================================================
 out/
-.vscode/
-.project
-.classpath
-.settings/
 
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-
-# Node
-node_modules
+# ============================================================
+# Node / Angular Build Artifacts
+# ============================================================
+node_modules/
+dist/
+tmp/
+out-tsc/
+bazel-out/
+.angular/cache/
+.sass-cache/
+coverage/
+typings/
+connect.lock
+libpeerconnection.log
+testem.log
 npm-debug.log
 yarn-error.log
 
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# Visual Studio Code
-.vscode/*
+# ============================================================
+# VS Code Exceptions (keep project config)
+# ============================================================
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
-.DS_Store
-Thumbs.db
-
+# ============================================================
+# OS & Miscellaneous
+# ============================================================
+/*.bak
