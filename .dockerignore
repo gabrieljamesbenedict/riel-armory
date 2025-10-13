@@ -1,0 +1,17 @@
+# Maven output
+target/
+
+# IDE & system files
+.idea/
+*.iml
+*.log
+*.tmp
+.DS_Store
+
+# Git
+.git
+.gitignore
+
+# Node/Angular artifacts
+rielarmoryangular/node_modules
+rielarmoryangular/dist

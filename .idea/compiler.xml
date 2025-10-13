@@ -14,7 +14,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="rielarmoryangular" options="-parameters" />
-      <module name="rielarmoryspringboot" options="-parameters" />
+      <module name="rielarmoryspringboot" options="" />
     </option>
   </component>
 </project>
