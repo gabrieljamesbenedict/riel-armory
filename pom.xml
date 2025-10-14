@@ -19,7 +19,6 @@
 
     <modules>
         <module>rielarmoryspringboot</module>
-        <module>rielarmoryangular</module>
     </modules>
 
     <properties>

@@ -1,5 +1,6 @@
 version: '3.9'
 services:
+
   mysql:
     image: mysql:8.0
     container_name: mysql_db
@@ -13,11 +14,13 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - rielarmory-network
 
   springboot:
     build:
       context: .
-      dockerfile: DockerFile
+      dockerfile: Dockerfile.springboot
     container_name: rielarmory_springboot
     restart: always
     depends_on:
@@ -30,6 +33,23 @@ services:
       DB_PASS: password
     ports:
       - "8080:8080"
+    networks:
+      - rielarmory-network
+
+
+  angular:
+    build:
+      context: ./rielarmoryangular
+      dockerfile: Dockerfile.angular
+    container_name: rielarmory_angular
+    ports:
+      - "4200:80"
+    networks:
+      - rielarmory-network
 
 volumes:
   mysql_data:
+
+networks:
+  rielarmory-network:
+    driver: bridge
