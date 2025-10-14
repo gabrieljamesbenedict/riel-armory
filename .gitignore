@@ -39,15 +39,19 @@ dist/
 tmp/
 out-tsc/
 bazel-out/
+.angular/
 .angular/cache/
-.sass-cache/
+.angular/local/
+sass-cache/
 coverage/
 typings/
+*.tsbuildinfo
 connect.lock
 libpeerconnection.log
 testem.log
 npm-debug.log
 yarn-error.log
+
 
 # ============================================================
 # VS Code Exceptions (keep project config)
@@ -60,4 +64,6 @@ yarn-error.log
 # ============================================================
 # OS & Miscellaneous
 # ============================================================
-/*.bak
+*.bak
+*.zip
+*.tar.gz
