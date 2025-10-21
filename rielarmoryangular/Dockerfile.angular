@@ -8,5 +8,5 @@ RUN npm run build --prod
 
 # Step 2: Serve with Nginx
 FROM nginx:alpine
-COPY --from=build /app/dist/rielarmoryangular /usr/share/nginx/html
+COPY --from=build /app/dist/rielarmoryangular/browser /usr/share/nginx/html
 EXPOSE 80

@@ -52,7 +52,6 @@ testem.log
 npm-debug.log
 yarn-error.log
 
-
 # ============================================================
 # VS Code Exceptions (keep project config)
 # ============================================================
