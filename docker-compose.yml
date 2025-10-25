@@ -31,8 +31,6 @@ services:
       DB_NAME: rielarmorydb
       DB_USER: user
       DB_PASS: password
-    ports:
-      - "8080:8080"
     networks:
       - rielarmory-network
 
