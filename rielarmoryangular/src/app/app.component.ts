@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductService, Product } from './services/product.service';
+import { ProductService, Product } from './service/product.service';
 
 @Component({
   selector: 'app-root',
