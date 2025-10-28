@@ -1,7 +1,10 @@
 package com.gjbmloslos.rielarmoryspringboot.serviceImpl;
 
+import com.gjbmloslos.rielarmoryspringboot.model.Role;
 import com.gjbmloslos.rielarmoryspringboot.model.User;
+import com.gjbmloslos.rielarmoryspringboot.repository.RoleRepository;
 import com.gjbmloslos.rielarmoryspringboot.repository.UserRepository;
+import com.gjbmloslos.rielarmoryspringboot.service.RoleService;
 import com.gjbmloslos.rielarmoryspringboot.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,7 +23,7 @@ public class UserServiceImpl implements UserService {
     public User createUser(User request) {
         User user = User.builder()
                 .name(request.getName())
-                .description(request.getDescription())
+                .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .build();
@@ -46,7 +49,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new RuntimeException("User not found with id " + id));
 
         user.setName(request.getName());
-        user.setDescription(request.getDescription());
+        user.setEmail(request.getEmail());
 
         return userRepository.save(user);
     }

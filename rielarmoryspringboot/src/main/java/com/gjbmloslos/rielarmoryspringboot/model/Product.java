@@ -26,11 +26,11 @@ public class Product {
     @Column(nullable = false)
     private Double price;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "manufacturerId", nullable = false)
     private Manufacturer manufacturer;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "categoryId", nullable = false)
     private Category category;
 

@@ -21,12 +21,13 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    private String description;
+    @Column(nullable = false)
+    private String email;
 
     @Column(nullable = false)
     private String password;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId", nullable = false)
     private Role role;
 
