@@ -1,7 +1,6 @@
 package com.gjbmloslos.rielarmoryspringboot.controller;
 
-import com.gjbmloslos.rielarmoryspringboot.model.dto.ProductRequest;
-import com.gjbmloslos.rielarmoryspringboot.model.dto.ProductResponse;
+import com.gjbmloslos.rielarmoryspringboot.model.Product;
 import com.gjbmloslos.rielarmoryspringboot.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,23 +17,23 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody ProductRequest request) {
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product request) {
         return ResponseEntity.ok(productService.createProduct(request));
     }
 
     @GetMapping("all")
-    public ResponseEntity<List<ProductResponse>> getAllProducts() {
+    public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id) {
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.getProductById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id,
-                                                         @Valid @RequestBody ProductRequest request) {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id,
+                                                         @Valid @RequestBody Product request) {
         return ResponseEntity.ok(productService.updateProduct(id, request));
     }
 

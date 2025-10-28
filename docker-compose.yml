@@ -31,6 +31,8 @@ services:
       DB_NAME: rielarmorydb
       DB_USER: user
       DB_PASS: password
+    ports:
+      - "8080:8080"
     networks:
       - rielarmory-network
 
@@ -39,6 +41,7 @@ services:
       context: ./rielarmoryangular
       dockerfile: Dockerfile.angular
     container_name: rielarmory_angular
+    restart: always
     ports:
       - "4200:80"
     networks:

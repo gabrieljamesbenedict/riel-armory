@@ -5,16 +5,15 @@ import lombok.*;
 
 @Entity
 @Table(name = "products")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // auto-increment
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long productId;
 
     @Column(nullable = false)
     private String name;
@@ -22,8 +21,23 @@ public class Product {
     private String description;
 
     @Column(nullable = false)
-    private Double price;
+    private Integer stock;
 
     @Column(nullable = false)
-    private Integer stock;
+    private Double price;
+
+    @ManyToOne
+    @JoinColumn(name = "manufacturerId", nullable = false)
+    private Manufacturer manufacturer;
+
+    @ManyToOne
+    @JoinColumn(name = "categoryId", nullable = false)
+    private Category category;
+
+    @Column
+    private Long caliber;
+
+    @Column
+    private Long magazineCapacity;
+
 }
