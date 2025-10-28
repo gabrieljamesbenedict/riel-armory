@@ -1,4 +1,28 @@
-<h1>Products</h1>
-<ul>
-  <li *ngFor="let product of products">{{ product.name }}</li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Products</th>
+      <th>Manufacturers</th>
+      <th>Categories</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li *ngFor="let product of products">{{ product.name }}</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li *ngFor="let manufacturer of manufacturers">{{ manufacturer.name }}</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li *ngFor="let category of categories">{{ category.name }}</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
