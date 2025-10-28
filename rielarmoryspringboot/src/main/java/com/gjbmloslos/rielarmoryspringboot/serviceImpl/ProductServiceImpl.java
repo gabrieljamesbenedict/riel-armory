@@ -1,7 +1,8 @@
-package com.gjbmloslos.rielarmoryspringboot.service;
+package com.gjbmloslos.rielarmoryspringboot.serviceImpl;
 
 import com.gjbmloslos.rielarmoryspringboot.model.Product;
 import com.gjbmloslos.rielarmoryspringboot.repository.ProductRepository;
+import com.gjbmloslos.rielarmoryspringboot.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
