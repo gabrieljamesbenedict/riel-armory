@@ -14,7 +14,6 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    // TODO createProduct() method
     @Override
     public Product createProduct(Product request) {
         Product product = Product.builder()
@@ -32,10 +31,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        return productRepository
-                .findAll()
-                .stream()
-                .toList();
+        return productRepository.findAll();
     }
 
     @Override
