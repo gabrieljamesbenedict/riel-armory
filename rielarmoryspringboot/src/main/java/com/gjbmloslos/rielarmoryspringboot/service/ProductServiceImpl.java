@@ -19,30 +19,35 @@ public class ProductServiceImpl implements ProductService {
         Product product = Product.builder()
                 .name(request.getName())
                 .description(request.getDescription())
-                .price(request.getPrice())
                 .stock(request.getStock())
+                .price(request.getPrice())
+                .manufacturer(request.getManufacturer())
+                .category(request.getCategory())
+                .caliber(request.getCaliber())
+                .magazineCapacity(request.getMagazineCapacity())
                 .build();
-        Product saved = productRepository.save(product);
-        return toResponse(saved);
+        return productRepository.save(product);
     }
 
     @Override
     public List<Product> getAllProducts() {
-        return productRepository.findAll().stream()
-                .map(this::toResponse)
+        return productRepository
+                .findAll()
+                .stream()
                 .toList();
     }
 
     @Override
     public Product getProductById(Long id) {
-        return productRepository.findById(id)
-                .map(this::toResponse)
+        return productRepository
+                .findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found with id " + id));
     }
 
     @Override
     public Product updateProduct(Long id, Product request) {
-        Product product = productRepository.findById(id)
+        Product product = productRepository
+                .findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found with id " + id));
 
         product.setName(request.getName());
@@ -50,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
         product.setPrice(request.getPrice());
         product.setStock(request.getStock());
 
-        return toResponse(productRepository.save(product));
+        return productRepository.save(product);
     }
 
     @Override
@@ -59,10 +64,5 @@ public class ProductServiceImpl implements ProductService {
             throw new RuntimeException("Product not found with id " + id);
         }
         productRepository.deleteById(id);
-    }
-
-    private Product toResponse(Product product) {
-        return new Product(product.getId(), product.getName(),
-                product.getDescription(), product.getPrice(), product.getStock());
     }
 }
