@@ -39,6 +39,22 @@ export class AppComponent implements OnInit {
       },
       error: (err) => console.error('Error fetching products:', err)
     });
-    
+
+    this.manufacturerService.getAllManufacturers().subscribe({
+      next: (data) => {
+        console.log('Manufacturers fetched:', data);
+        this.manufacturers = data;
+      },
+      error: (err) => console.error('Error fetching products:', err)
+    });
+
+    this.categoryService.getAllCategories().subscribe({
+      next: (data) => {
+        console.log('Categories fetched:', data);
+        this.categories = data;
+      },
+      error: (err) => console.error('Error fetching products:', err)
+    });
+
   }
 }
