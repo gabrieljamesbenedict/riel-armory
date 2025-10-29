@@ -20,20 +20,10 @@ export class AppComponent implements OnInit {
   title = 'Riel\'s Armory';
 
   products: Product[] = [];
-  manufacturers: Manufacturer[] = [];
-  categories: Category[] = [];
-
-  // constructor(
-  //   private productService: ProductService,
-  //   private manufacturerService: ManufacturerService,
-  //   private categoryService: CategoryService
-  // ) {}
 
   constructor() {}
 
   private productService = inject(ProductService);
-  private manufacturerService = inject(ManufacturerService);
-  private categoryService = inject(CategoryService);
 
   ngOnInit(): void {
     console.log('AppComponent initialized');
@@ -42,22 +32,6 @@ export class AppComponent implements OnInit {
       next: (data) => {
         console.log('Products fetched:', data);
         this.products = data;
-      },
-      error: (err) => console.error('Error fetching products:', err)
-    });
-
-    this.manufacturerService.getAllManufacturers().subscribe({
-      next: (data) => {
-        console.log('Manufacturers fetched:', data);
-        this.manufacturers = data;
-      },
-      error: (err) => console.error('Error fetching products:', err)
-    });
-
-    this.categoryService.getAllCategories().subscribe({
-      next: (data) => {
-        console.log('Categories fetched:', data);
-        this.categories = data;
       },
       error: (err) => console.error('Error fetching products:', err)
     });

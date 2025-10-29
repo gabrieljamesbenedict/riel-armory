@@ -1,28 +1,30 @@
 <table> 
   <thead>
     <tr>
-      <th>Products</th>
-      <th>Manufacturers</th>
-      <th>Categories</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Remaining Stock</th>
+      <th>Price</th>
+      <th>Manufacturer</th>
+      <th>Category</th>
+      <th>Caliber</th>
+      <th>Magazine Capacity</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>
-        <ul>
-          <li *ngFor="let product of products">{{ product.name }}</li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li *ngFor="let manufacturer of manufacturers">{{ manufacturer.name }}</li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li *ngFor="let category of categories">{{ category.name }}</li>
-        </ul>
-      </td>
-    </tr>
+    @for (product of products; track product.productId) {
+      <tr>
+        <td>{{product.productId}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.stock}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.manufacturer.name}}</td>
+        <td>{{product.category.name}}</td>
+        <td>{{product.caliber}}</td>
+        <td>{{product.magazineCapacity}}</td>
+      </tr>
+    }
   </tbody>
 </table>
