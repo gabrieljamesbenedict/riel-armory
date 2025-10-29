@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProductService } from './service/product.service';
@@ -23,11 +23,17 @@ export class AppComponent implements OnInit {
   manufacturers: Manufacturer[] = [];
   categories: Category[] = [];
 
-  constructor(
-    private productService: ProductService,
-    private manufacturerService: ManufacturerService,
-    private categoryService: CategoryService
-  ) {}
+  // constructor(
+  //   private productService: ProductService,
+  //   private manufacturerService: ManufacturerService,
+  //   private categoryService: CategoryService
+  // ) {}
+
+  constructor() {}
+
+  private productService = inject(ProductService);
+  private manufacturerService = inject(ManufacturerService);
+  private categoryService = inject(CategoryService);
 
   ngOnInit(): void {
     console.log('AppComponent initialized');
