@@ -1,11 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProductService } from './service/product.service';
-import { Product } from './model/product.model';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @Component({
   selector: 'app-root',
@@ -21,8 +19,6 @@ import { HomeComponent } from './home/home.component';
 })
 
 export class AppComponent {
-
-  products: Product[] = [];
 
   constructor() {}
 
