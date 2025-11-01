@@ -1,3 +1,24 @@
 $primary-color: #1e1e2f;
 $accent-color: #e63946;
 $text-color: #ffffff;
+$font-family: 'Segoe UI';
+
+@mixin app-theme {
+    background-color: $primary-color;
+    color: $text-color;
+    font-family: $font-family;
+}
+
+@font-face {
+    font-family: Wallpoet;
+    src: url("resources/fonts/Wallpoet-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: BlackOpsOne;
+    src: url("resources/fonts/BlackOpsOne-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

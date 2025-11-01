@@ -1,0 +1,61 @@
+@use "../../app.component" as app;
+
+div.home-banner {
+
+    @include app.app-theme;
+
+    $primary-color: app.$primary-color;
+    $accent-color: app.$accent-color;
+    $text-color: app.$text-color;
+    $font-family: app.$font-family;
+
+    width: 100%;
+    aspect-ratio: 10/3;
+
+    background-image: url("../../resources/images/gun-banner.jpg");
+    background-color: rgba(0, 0, 0, 0.7);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    div.banner-title {
+        //border: 1px red solid;
+        width: 50%;
+
+        margin: 0 5vw;
+
+        h1 {
+            font-family: BlackOpsOne, sans-serif;
+            font-size: 3rem;
+            text-decoration: solid;
+
+            margin: 0 0 1rem 0;
+        }
+
+        h2 {
+            font-family: $font-family;
+            font-size: 1.2rem;  
+            font-weight: 400;
+        
+            margin: 0 0 1rem 0;
+
+            a {
+                color: $accent-color;
+                font-weight: 500;
+                text-decoration: none;
+                transition: color 300ms, font-weight 300ms;
+
+                &:hover {
+                    color: lighten($accent-color, 10%);
+                    font-weight: 700;
+                }
+            }
+        }
+
+    }
+}
