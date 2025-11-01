@@ -9,6 +9,15 @@ $font-family: 'Segoe UI';
     font-family: $font-family;
 }
 
+@mixin darken-background-image($url, $amount) {
+    background-image: $url;
+    background-color: rgba(0, 0, 0, $amount);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 @font-face {
     font-family: Wallpoet;
     src: url("resources/fonts/Wallpoet-Regular.ttf") format('truetype');
