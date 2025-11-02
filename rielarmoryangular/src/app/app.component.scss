@@ -17,6 +17,13 @@ $screen-breakpoints: (
     font-family: $font-family;
 }
 
+@mixin div-padding {
+    padding: 4rem 6rem;
+    @include respond("sm") {
+        padding: 2rem 3rem;
+    }
+}
+
 @mixin darken-background-image($url, $amount) {
     background-image: $url;
     background-color: rgba(0, 0, 0, $amount);
@@ -36,6 +43,19 @@ $screen-breakpoints: (
   }
 }
 
+@mixin title-text($size, $weight) {
+  font-family: BlackOpsOne, sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  margin: 0 0 1rem 0;
+}
+
+@mixin body-text($size, $weight) {
+  font-family: $font-family, sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  margin: 0 0 1rem 0;
+}
 
 @font-face {
     font-family: Wallpoet;
