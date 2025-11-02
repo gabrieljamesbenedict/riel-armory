@@ -1,6 +1,7 @@
 @use "../../app.component" as app;
 
 
+/* Header / Navigation Bar */
 nav.navigationbar {
     $primary-color: app.$primary-color;
     $accent-color: app.$accent-color;
@@ -10,22 +11,24 @@ nav.navigationbar {
     @include app.app-theme;
 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-
     position: sticky;
     top: 0;
+    width: 100%;
+    box-sizing: border-box;
 
     div {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 8vh;
+        height: 10vh;
         margin: 0 auto;
         padding: 0 5vw;
-        max-width: 80vw;
+        max-width: 100%;
+        box-sizing: border-box;
 
         h1 {
             font-family: BlackOpsOne, sans-serif;
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin: 0;
 
             a {
@@ -42,33 +45,44 @@ nav.navigationbar {
         ul {
             list-style: none;
             display: flex;
-            justify-content: space-between;
-            gap: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
             margin: 0;
             padding: 0;
-            
+
             li {
                 a {
                     display: flex;
+                    flex-shrink: 1;
                     justify-content: center;
                     align-items: center;
-                    width: 100px;
+                    width: auto;
                     height: 5vh;
+                    padding: 0.6rem 3rem;
+                    border-radius: 5px;
+
                     color: $text-color;
                     text-align: center;
                     text-decoration: none;
-                    padding: 0 1rem;
-                    border-radius: 5px;
+
                     transition: background-color 0.2s ease, color 0.2s ease;
 
                     &:hover {
                         background-color: rgba(255, 255, 255, 0.1);
                         color: $accent-color;
-                        text-decoration: underline;
                     }
                 }
             }
         }
-    }
 
+        @include app.respond("sm") {
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+
+            ul {
+                justify-content: center;
+            }
+        }
+    }
 }

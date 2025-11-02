@@ -1,126 +1,152 @@
 @use "../../app.component" as app;
 
-div.home-banner {
+@mixin div-padding {
+    padding: 2rem 6rem;
+    @include app.respond("sm") {
+        padding: 1rem 3rem;
+    }
+}
 
+$div-border-debug: false;
+
+
+div.home-banner {
     @include app.app-theme;
     @include app.darken-background-image(url(../../resources/images/gun-banner.jpg), 0.7);
+    @include div-padding;
 
     $primary-color: app.$primary-color;
     $accent-color: app.$accent-color;
     $text-color: app.$text-color;
     $font-family: app.$font-family;
 
-    aspect-ratio: 9/3;
-
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-
-    padding: 2rem 1rem;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
 
     div.banner-content {
-        //border: 1px red solid;
-        width: 50%;
+        @if ($div-border-debug) { border: 1px red solid; }
 
-        margin: 2rem 4rem;
+        width: 60%;
+        margin: 0; /* replace 0 5vw with auto to prevent overflow */
+        box-sizing: border-box;
+
+        @include app.respond("md") {
+            width: 100%;
+        }
 
         h1 {
             font-family: BlackOpsOne, sans-serif;
             font-size: 3rem;
             font-weight: 400;
-
             margin: 0 0 1rem 0;
         }
 
         h2 {
             font-family: $font-family;
-            font-size: 1.2rem;  
+            font-size: 1.2rem;
             font-weight: 400;
-        
             margin: 0 0 1rem 0;
 
             a {
                 color: $accent-color;
-                font-weight: 500;
+                font-weight: 600;
                 text-decoration: none;
-                transition: color 300ms, font-weight 300ms;
+                transition: color 400ms, font-weight 200ms;
 
                 &:hover {
-                    color: lighten($accent-color, 10%);
-                    font-weight: 700;
+                    color: lighten($accent-color, 20%);
                 }
             }
         }
-
-
     }
 }
 
-div.gun-safety {
 
+div.gun-safety {
     @include app.app-theme;
     @include app.darken-background-image(url(../../resources/images/dark-metal.jpg), 0.9);
+    @include div-padding;
 
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-
-    height: auto;
-
-    padding: 2rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
 
     div.gun-safety-content {
-        //border: 1px red solid;
-        
+        @if ($div-border-debug) { border: 1px red solid; }
+
         width: 100%;
-        margin: 0 5vw;
-
-        display: block;
-        flex-direction: column;
-        justify-content: flex-start;
+        margin: 0 auto;
+        
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        justify-content: center;
         align-items: center;
+        gap: 4rem;
 
-    
-        margin: 2rem 4rem;
-
-        h1 {
-            font-family: BlackOpsOne, sans-serif;
-            font-size: 3rem;
-            font-weight: 400;
-
-            margin: 0 0 1rem 0;
+        @include app.respond("lg") {
+            flex-direction: column;
+            gap: 0rem;
         }
 
-        h2 {
-            font-size: 1.2rem;  
-            font-weight: 400;
-        
-            margin: 0 0 3rem 0;
+        div.gun-safety-text {
+            @if ($div-border-debug) { border: 1px blue solid; }
+            flex: 1 1;
+            box-sizing: border-box;
+
+            h1 {
+                font-family: BlackOpsOne, sans-serif;
+                font-size: 3rem;
+                font-weight: 400;
+                margin: 0 0 1rem 0;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+                font-weight: 400;
+                margin: 0 0 3rem 0;
+            }
         }
 
         div.card-box {
+            @if ($div-border-debug) { border: 1px blue solid; }
+            
+            flex: 1.5 1;
 
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem; 
+
+            @include app.respond("md") {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                justify-content: flex-start;
+                gap: 1rem;
+                box-sizing: border-box;
+            }
 
             div.safety-rule {
                 background: rgba(20, 20, 20, 0.6);
                 border: 1px solid rgba(255, 255, 255, 0.1);
                 border-radius: 12px;
                 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-                padding: 2rem;
-                flex: 1 1 300px;
-                max-width: 350px;
+                
+                flex: 1 1 200px;
                 min-height: 150px;
+                padding: 2rem 4rem;
 
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-start;
+                justify-content: center;
                 align-items: center;
                 text-align: left;
-                color: white;
+                
                 transition: background-color 300ms, transform 300ms ease, box-shadow 300ms ease;
 
                 &:hover {
@@ -134,7 +160,6 @@ div.gun-safety {
                     font-size: 2rem;
                     font-weight: 400;
                     color: #e63946;
-
                     margin-bottom: 0.5rem;
                 }
 
@@ -142,14 +167,10 @@ div.gun-safety {
                     font-family: app.$font-family, sans-serif;
                     font-size: 1.5rem;
                     font-weight: 500;
-                    text-decoration: solid;
                     text-align: center;
-
                     margin: 0;
                 }
             }
-            
         }
     }
-
 }

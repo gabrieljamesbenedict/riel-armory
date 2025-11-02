@@ -3,6 +3,14 @@ $accent-color: #e63946;
 $text-color: #ffffff;
 $font-family: 'Segoe UI';
 
+$screen-breakpoints: (
+  "xs": 480px,  // Phones
+  "sm": 768px,  // Tablets
+  "md": 1024px, // Desktop
+  "lg": 1280px, // L Desktop
+  "xl": 1600px  // XL Desktop
+);
+
 @mixin app-theme {
     background-color: $primary-color;
     color: $text-color;
@@ -17,6 +25,17 @@ $font-family: 'Segoe UI';
     background-position: center;
     background-repeat: no-repeat;
 }
+
+@mixin respond($breakpoint) {
+  @if map-has-key($screen-breakpoints, $breakpoint) {
+    @media (max-width: map-get($screen-breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "No breakpoint found for #{$breakpoint}";
+  }
+}
+
 
 @font-face {
     font-family: Wallpoet;
