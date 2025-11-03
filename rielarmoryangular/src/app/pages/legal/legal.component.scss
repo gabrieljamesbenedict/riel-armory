@@ -133,4 +133,27 @@ div.main-container {
         }
     }
 
+    div.license-permit-container {
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+
+        @include app.respond("sm") {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        div.license-permit {
+            h1 {
+                @include app.title-text(1.2rem, 400);
+                color: app.$accent-color;
+            }
+
+            p {
+                @include app.body-text(0.9rem, 400);
+            }
+        }
+
+    }
+
 }

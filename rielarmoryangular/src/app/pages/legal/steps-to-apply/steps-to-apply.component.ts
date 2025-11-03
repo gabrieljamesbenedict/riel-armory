@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-steps-to-apply',
   imports: [],
   templateUrl: './steps-to-apply.component.html',
-  styleUrl: './steps-to-apply.component.scss'
+  styleUrl: '../legal.component.scss'
+  //styleUrl: './steps-to-apply.component.scss'
 })
 export class StepsToApplyComponent {
 

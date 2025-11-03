@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-eligibility-requirements',
   imports: [],
   templateUrl: './eligibility-requirements.component.html',
-  styleUrl: './eligibility-requirements.component.scss'
+  styleUrl: '../legal.component.scss'
+  //styleUrl: './eligibility-requirements.component.scss'
 })
 export class EligibilityRequirementsComponent {
 
