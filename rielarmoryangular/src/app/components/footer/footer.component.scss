@@ -4,7 +4,7 @@
     padding: 2rem 0;
 }
 
-$div-border-debug: true;
+$div-border-debug: false;
 
 div.footer-container {
 
@@ -56,6 +56,7 @@ div.footer-container {
             gap: 1rem;
 
             @include footer-padding;
+            padding-right: 3rem;
 
             img {
                 width: clamp(8rem, 5vw, 10rem);
@@ -116,7 +117,7 @@ div.footer-container {
                 max-height: 100%;
 
                 li {
-                    @include app.body-text(0.8rem, 600);
+                    @include app.body-text(0.7rem, 600);
                     margin-bottom: 0rem;
 
                     flex-grow: 0;

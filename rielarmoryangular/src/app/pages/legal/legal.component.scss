@@ -1,6 +1,6 @@
 @use "../../app.component" as app;
 
-$div-border-debug: true;
+$div-border-debug: false;
 
 
 div.main-container {
@@ -101,6 +101,24 @@ div.main-container {
 
         }
 
+    }
+
+    div.definition-container {
+        
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 3rem;
+
+        div.definition {
+            h1 {
+                @include app.title-text(1.2rem, 400);
+                color: app.$accent-color;
+            }
+
+            p {
+                @include app.body-text(0.9rem, 400);
+            }
+        }
     }
 
 }
