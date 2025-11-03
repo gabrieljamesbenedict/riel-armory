@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-definition-of-terms',
   imports: [],
   templateUrl: './definition-of-terms.component.html',
-  styleUrl: './definition-of-terms.component.scss'
+  styleUrl: '../legal.component.scss'
+  //styleUrl: './definition-of-terms.component.scss'
 })
 export class DefinitionOfTermsComponent {
 

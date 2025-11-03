@@ -3,19 +3,17 @@
 $div-border-debug: true;
 
 
-div.title-div {
+div.main-container {
 
     @include app.app-theme;
     @include app.darken-background-image(url(../../resources/images/firearm-law-background.jpg), 0.8);
     @include app.div-padding;
 
-    height: 100vh;
-
     display: flex;
     flex-direction: column;
     gap: 2rem;
 
-    div.title-content {
+    div.title-container {
         @if ($div-border-debug) { border: 1px red solid; }
 
         h1 {
@@ -27,21 +25,22 @@ div.title-div {
         }
     }
 
-    div.legal-card-container {
+    div.card-container {
         
         @if ($div-border-debug) { border: 1px red solid; }
 
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: flex-start;
-        gap: 2rem;
+        gap: 1rem;
 
         div.legal-card {
             @if ($div-border-debug) { border: 1px blue solid; }
 
-            flex: 1 0;
-            min-height: 150px;
+            flex: 1 0 250px;
+            height: 250px;
 
             cursor: pointer;
 
@@ -68,37 +67,37 @@ div.title-div {
 
             p {
                 @include app.body-text(1rem, 400);
+
+                &.p-icon {
+
+                    margin-bottom: 0;
+
+                    &::after {
+                        content: "";
+                        // background: url("../../resources/images/info-icon.png") no-repeat center;
+                        display: block;
+                        width: 5rem;
+                        height: 5rem;
+                        margin: 0 auto;
+                    }
+                    &.defintion-of-terms::after {
+                        background: url("../../resources/images/info-icon.png") no-repeat center;
+                        background-size: contain;
+                    }
+                    &.licenses-and-permits::after {
+                        background: url("../../resources/images/document-icon.png") no-repeat center;
+                        background-size: contain;
+                    }
+                    &.eligibility-requirements::after {
+                        background: url("../../resources/images/checkmark-icon.png") no-repeat center;
+                        background-size: contain;
+                    }
+                    &.steps-to-apply::after {
+                        background: url("../../resources/images/clipboard-icon.png") no-repeat center;
+                        background-size: contain;
+                    }
+                }
                 
-                margin-bottom: 0;
-
-                &::after {
-                    content: "";
-                    // background: url("../../resources/images/info-icon.png") no-repeat center;
-                    display: block;
-                    width: 5rem;
-                    height: 5rem;
-                    margin: 1rem auto 0 auto;
-                }
-
-                &.defintion-of-terms::after {
-                    background: url("../../resources/images/info-icon.png") no-repeat center;
-                    background-size: contain;
-                }
-
-                &.licenses-and-permits::after {
-                    background: url("../../resources/images/document-icon.png") no-repeat center;
-                    background-size: contain;
-                }
-
-                &.eligibility-requirements::after {
-                    background: url("../../resources/images/clipboard-icon.png") no-repeat center;
-                    background-size: contain;
-                }
-
-                &.steps-to-apply::after {
-                    background: url("../../resources/images/info-icon.png") no-repeat center;
-                    background-size: contain;
-                }
             }
 
         }
