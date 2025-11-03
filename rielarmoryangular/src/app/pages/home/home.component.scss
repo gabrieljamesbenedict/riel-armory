@@ -32,11 +32,11 @@ div.home-banner {
         }
 
         h1 {
-            @include app.title-text(3rem, 400);
+            @include app.title-text(2rem, 400);
         }
 
         p {
-            @include app.body-text(1.2rem, 400);
+            @include app.body-text(1rem, 400);
 
             a {
                 color: $accent-color;
@@ -88,11 +88,11 @@ div.gun-safety {
             box-sizing: border-box;
 
             h1 {
-                @include app.title-text(3rem, 400);
+                @include app.title-text(2rem, 400);
             }
 
             p {
-                @include app.body-text(1.2rem, 400);
+                @include app.body-text(1rem, 400);
             }
         }
 
@@ -139,12 +139,12 @@ div.gun-safety {
                 }
 
                 h1 {
-                    @include app.title-text(2rem, 400);
+                    @include app.title-text(1.5rem, 400);
                     color: app.$accent-color;
                 }
 
                 p {
-                    @include app.body-text(1.5rem, 500);
+                    @include app.body-text(1rem, 500);
                     text-align: center;
                     margin: 0;
                 }
@@ -187,7 +187,7 @@ div.store-info {
             }
 
             p {
-                @include app.body-text(1.2rem, 400);
+                @include app.body-text(1rem, 400);
             }
 
             ul {
@@ -226,7 +226,7 @@ div.store-info {
                     }
 
                     span {
-                        @include app.body-text(1.1rem, 700);
+                        @include app.body-text(1.2rem, 700);
                     }
                 }
             }

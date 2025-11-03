@@ -17,11 +17,11 @@ div.main-container {
         @if ($div-border-debug) { border: 1px red solid; }
 
         h1 {
-            @include app.title-text(3rem, 400);
+            @include app.title-text(2rem, 400);
         }
 
         p {
-            @include app.body-text(1.2rem, 400);
+            @include app.body-text(1rem, 400);
         }
     }
 
@@ -61,7 +61,7 @@ div.main-container {
             }
 
             h1 {
-                @include app.title-text(1.4rem, 400);
+                @include app.title-text(1.2rem, 600);
                 color: app.$accent-color;
             }
 
@@ -106,8 +106,20 @@ div.main-container {
     div.definition-container {
         
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(4, 1fr);
         gap: 3rem;
+
+        @include app.respond("md") {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include app.respond("sm") {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include app.respond("xs") {
+            grid-template-columns: repeat(1, 1fr);
+        }
 
         div.definition {
             h1 {
