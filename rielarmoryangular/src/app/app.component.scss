@@ -59,14 +59,14 @@ $screen-breakpoints: (
 
 @font-face {
     font-family: Wallpoet;
-    src: url("resources/fonts/Wallpoet-Regular.ttf") format('truetype');
+    src: url("/assets/fonts/Wallpoet-Regular.ttf") format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: BlackOpsOne;
-    src: url("resources/fonts/BlackOpsOne-Regular.ttf") format('truetype');
+    src: url("/assets/fonts/BlackOpsOne-Regular.ttf") format('truetype');
     font-weight: normal;
     font-style: normal;
 }

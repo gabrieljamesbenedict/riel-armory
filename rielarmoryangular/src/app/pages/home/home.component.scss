@@ -1,11 +1,12 @@
 @use "../../app.component" as app;
 
+
 $div-border-debug: false;
 
 
 div.home-banner {
     @include app.app-theme;
-    @include app.darken-background-image(url(../../resources/images/gun-banner.jpg), 0.7);
+    @include app.darken-background-image(url("/assets/images/gun-banner.jpg"), 0.7);
     @include app.div-padding;
 
     $primary-color: app.$primary-color;
@@ -54,7 +55,7 @@ div.home-banner {
 
 div.gun-safety {
     @include app.app-theme;
-    @include app.darken-background-image(url(../../resources/images/dark-metal.jpg), 0.9);
+    @include app.darken-background-image(url("/assets/images/dark-metal.jpg"), 0.9);
     @include app.div-padding;
 
     display: flex;
@@ -155,7 +156,7 @@ div.gun-safety {
 
 div.store-info {
     @include app.app-theme;
-    @include app.darken-background-image(url(../../resources/images/shooting-range.jpg), 0.8);
+    @include app.darken-background-image(url("/assets/images/shooting-range.jpg"), 0.8);
     @include app.div-padding;
 
     display: flex;
@@ -213,7 +214,7 @@ div.store-info {
 
                     &::before {
                         content: "";
-                        background: url("../../resources/images/gun-list-style.png") no-repeat center;
+                        background: url("/assets/images/gun-list-style.png") no-repeat center;
                         background-size: contain;
 
                         flex-shrink: 0;
