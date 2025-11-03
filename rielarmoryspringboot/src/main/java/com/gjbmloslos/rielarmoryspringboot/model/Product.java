@@ -3,6 +3,8 @@ package com.gjbmloslos.rielarmoryspringboot.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "products")
 @Data
@@ -25,6 +27,10 @@ public class Product {
 
     @Column(nullable = false)
     private Double price;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tagId", nullable = false)
+    private Set<Tag> tags;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "manufacturerId", nullable = false)
