@@ -155,7 +155,7 @@ div.gun-safety {
 
 div.store-info {
     @include app.app-theme;
-    @include app.darken-background-image(url(../../resources/images/shooting-range.jpg), 0.9);
+    @include app.darken-background-image(url(../../resources/images/shooting-range.jpg), 0.8);
     @include app.div-padding;
 
     display: flex;

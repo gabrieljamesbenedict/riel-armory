@@ -1,0 +1,108 @@
+@use "../../app.component" as app;
+
+$div-border-debug: true;
+
+
+div.title-div {
+
+    @include app.app-theme;
+    @include app.darken-background-image(url(../../resources/images/firearm-law-background.jpg), 0.8);
+    @include app.div-padding;
+
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    div.title-content {
+        @if ($div-border-debug) { border: 1px red solid; }
+
+        h1 {
+            @include app.title-text(3rem, 400);
+        }
+
+        p {
+            @include app.body-text(1.2rem, 400);
+        }
+    }
+
+    div.legal-card-container {
+        
+        @if ($div-border-debug) { border: 1px red solid; }
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+
+        div.legal-card {
+            @if ($div-border-debug) { border: 1px blue solid; }
+
+            flex: 1 0;
+            min-height: 150px;
+
+            cursor: pointer;
+
+            text-align: center;
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+            padding: 2rem 1rem;
+
+            transition: background-color 300ms, transform 300ms ease, box-shadow 300ms ease;
+
+            &:hover {
+                background: rgba(20, 20, 20, 0.8);
+                transform: scale(1.04);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            }
+
+            h1 {
+                @include app.title-text(1.4rem, 400);
+                color: app.$accent-color;
+            }
+
+            p {
+                @include app.body-text(1rem, 400);
+                
+                margin-bottom: 0;
+
+                &::after {
+                    content: "";
+                    // background: url("../../resources/images/info-icon.png") no-repeat center;
+                    display: block;
+                    width: 5rem;
+                    height: 5rem;
+                    margin: 1rem auto 0 auto;
+                }
+
+                &.defintion-of-terms::after {
+                    background: url("../../resources/images/info-icon.png") no-repeat center;
+                    background-size: contain;
+                }
+
+                &.licenses-and-permits::after {
+                    background: url("../../resources/images/document-icon.png") no-repeat center;
+                    background-size: contain;
+                }
+
+                &.eligibility-requirements::after {
+                    background: url("../../resources/images/clipboard-icon.png") no-repeat center;
+                    background-size: contain;
+                }
+
+                &.steps-to-apply::after {
+                    background: url("../../resources/images/info-icon.png") no-repeat center;
+                    background-size: contain;
+                }
+            }
+
+        }
+
+    }
+
+}
