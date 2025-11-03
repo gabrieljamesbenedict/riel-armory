@@ -1,12 +1,7 @@
 @use "../../app.component" as app;
 
 
-/* Header / Navigation Bar */
 nav.navigationbar {
-    $primary-color: app.$primary-color;
-    $accent-color: app.$accent-color;
-    $text-color: app.$text-color;
-    $font-family: app.$font-family;
 
     @include app.app-theme;
 
@@ -33,12 +28,12 @@ nav.navigationbar {
             margin: 0;
 
             a {
-                color: $text-color;
+                color: app.$text-color;
                 text-decoration: none;
                 transition: color 300ms ease;
 
                 &:hover {
-                    color: $accent-color;
+                    color: app.$accent-color;
                 }
             }
         }
@@ -62,7 +57,7 @@ nav.navigationbar {
                     padding: 0.6rem 3rem;
                     border-radius: 5px;
 
-                    color: $text-color;
+                    color: app.$text-color;
                     text-align: center;
                     text-decoration: none;
 
@@ -70,7 +65,7 @@ nav.navigationbar {
 
                     &:hover {
                         background-color: rgba(255, 255, 255, 0.1);
-                        color: $accent-color;
+                        color: app.$accent-color;
                     }
                 }
             }
