@@ -6,8 +6,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name = "roles")
+@Table(name = "tags")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,4 +26,8 @@ public class Tag {
 
     @Column
     private String description;
+
+    @ManyToMany(mappedBy = "tags")
+    private Set<Product> products = new HashSet<>();
+
 }

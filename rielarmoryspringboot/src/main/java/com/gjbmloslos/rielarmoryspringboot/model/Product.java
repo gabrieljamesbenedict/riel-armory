@@ -3,6 +3,7 @@ package com.gjbmloslos.rielarmoryspringboot.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -28,9 +29,13 @@ public class Product {
     @Column(nullable = false)
     private Double price;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "tagId", nullable = false)
-    private Set<Tag> tags;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "product_tag",
+            joinColumns = @JoinColumn(name = "productId"),
+            inverseJoinColumns = @JoinColumn(name = "tagId")
+    )
+    private Set<Tag> tags = new HashSet<>();
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "manufacturerId", nullable = false)
@@ -41,7 +46,7 @@ public class Product {
     private Category category;
 
     @Column
-    private Long caliber;
+    private String caliber;
 
     @Column
     private Long magazineCapacity;
