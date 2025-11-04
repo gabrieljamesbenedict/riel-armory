@@ -1,1 +1,81 @@
-<p>login works!</p>
+<div class="login-page-wrapper">
+    <!-- Main container for the entire login view -->
+    <div class="login-card-container">
+        <!-- The card or panel holding the form -->
+        <div class="login-card">
+
+            <!-- Card Header/Title Area -->
+            <div class="card-header">
+                <h1 class="card-title">Account Login</h1>
+                <p class="card-subtitle">Access your account to continue.</p>
+            </div>
+
+            <!-- Form Content Area -->
+    <form class="login-form" (ngSubmit)="onSubmit()">
+
+        <!-- Username Input Group -->
+        <div class="input-group email-group">
+            <label for="username" class="form-label">Username</label>
+            <div class="input-field-wrapper">
+            <input 
+                type="text" 
+                id="username" 
+                class="form-input email-input" 
+                placeholder="Enter your username" 
+                required
+                [(ngModel)]="username"
+                name="username"
+                autocomplete="current-password"
+            >
+            </div>
+        </div>
+
+        <!-- Password Input Group -->
+        <div class="input-group password-group">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-field-wrapper">
+            <input 
+                type="password" 
+                id="password" 
+                class="form-input password-input" 
+                placeholder="Enter your password" 
+                required
+                [(ngModel)]="password"
+                name="password"
+                autocomplete="current-password"
+            >
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-message" style="color:red; margin-bottom: 1em;">
+            {{ errorMessage }}
+        </div>
+
+        <!-- Forgot Password Link
+        <div class="auxiliary-links">
+            <div class="forgot-password-link">
+            <a href="#" class="link-text">Forgot Password?</a>
+            </div>
+        </div> -->
+
+        <!-- Action Button -->
+        <div class="action-buttons-group">
+            <button type="submit" class="primary-button login-button">Log In</button>
+        </div>
+
+    </form>
+
+
+            <!-- Card Footer/Signup Prompt -->
+            <div class="card-footer">
+                <p class="signup-prompt">
+                    Don't have an account?
+                    <!-- The routerLink attribute is Angular-specific but included here for context -->
+                    <a class="link-text signup-link" routerLink="/register">Create Account</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
