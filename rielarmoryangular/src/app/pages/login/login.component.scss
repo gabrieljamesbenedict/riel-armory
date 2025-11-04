@@ -1,199 +1,174 @@
 @use "../../app.component" as app;
 
-// Set to true to see borders for debugging layout
 $div-border-debug: false;
-
-// Re-defining common variables from app.component for cleaner local referencing
-$primary-color: app.$primary-color;   // Assuming a dark/near-black color
-$accent-color: app.$accent-color;     // Assuming a metallic/gold/red accent color
-$text-color: app.$text-color;         // Assuming a light/white/off-white color
+$primary-color: app.$primary-color;
+$accent-color: app.$accent-color;
+$text-color: app.$text-color;
 $font-family: app.$font-family;
 
-
-// --- LOGIN PAGE WRAPPER ---
 div.login-page-wrapper {
-    @include app.app-theme;
-    // Using the requested gun-banner image and darkening it
-    @include app.darken-background-image(url("/assets/images/gun-banner.jpg"), 0.75);
-    @include app.div-padding;
+  @include app.app-theme;
+  @include app.darken-background-image(url("/assets/images/gun-banner.jpg"), 0.75);
+  @include app.div-padding;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 
-    // Full screen setup
-    min-height: 100vh;
-    width: 100vw;
-    
-    // Center the card container
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
+  div.login-card-container {
+    @if ($div-border-debug) { border: 1px red solid; }
+    max-width: 1200px;
+    width: 100%;
+    padding: 2rem 1rem;
 
-    // --- LOGIN CARD CONTAINER (for flexible centering) ---
-    div.login-card-container {
-        @if ($div-border-debug) { border: 1px red solid; }
-        
-        // Ensure container doesn't take up excessive space on large screens
-        max-width: 1200px;
-        width: 100%;
-        padding: 2rem 0; // Vertical padding for mobile scrolling
+    div.login-card {
+      @if ($div-border-debug) { border: 1px blue solid; }
+      background: rgba(15, 15, 15, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+      box-sizing: border-box;
 
-        // --- LOGIN CARD ---
-        div.login-card {
-            @if ($div-border-debug) { border: 1px blue solid; }
-            
-            background: rgba(15, 15, 15, 0.9); // Deep, slightly transparent background
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-            
-            width: 100%;
-            max-width: 420px; // Standard card width
-            margin: 0 auto; // Center the card horizontally
-            padding: 2.5rem 2rem;
-            box-sizing: border-box;
+      div.card-header {
+        text-align: center;
+        margin-bottom: 2rem;
 
-            // --- Card Header/Title Area ---
-            div.card-header {
-                text-align: center;
-                margin-bottom: 2rem;
-
-                h1.card-title {
-                    @include app.title-text(1.8rem, 600);
-                    color: $accent-color; // Use accent color for the title
-                    margin-bottom: 0.5rem;
-                }
-
-                p.card-subtitle {
-                    @include app.body-text(0.95rem, 400);
-                    color: lighten($text-color, 40%);
-                }
-            }
-
-            // --- Form Content Area ---
-            form.login-form {
-                display: flex;
-                flex-direction: column;
-                gap: 1.5rem;
-
-                // --- Input Group ---
-                div.input-group {
-                    
-                    label.form-label {
-                        @include app.body-text(0.9rem, 600);
-                        display: block;
-                        margin-bottom: 0.4rem;
-                        color: $text-color;
-                    }
-
-                    div.input-field-wrapper {
-                        position: relative;
-                        
-                        input.form-input {
-                            @include app.body-text(1rem, 400);
-                            width: 100%;
-                            padding: 0.75rem 1rem;
-                            background-color: rgba(255, 255, 255, 0.05); // Very slight background
-                            border: 1px solid rgba(255, 255, 255, 0.2);
-                            border-radius: 8px;
-                            color: $text-color;
-                            transition: border-color 300ms, box-shadow 300ms;
-                            box-sizing: border-box;
-
-                            // Placeholder style
-                            &::placeholder {
-                                color: rgba(255, 255, 255, 0.4);
-                            }
-
-                            // Focus style using accent color
-                            &:focus {
-                                outline: none;
-                                border-color: $accent-color;
-                                box-shadow: 0 0 0 2px rgba($accent-color, 0.3);
-                                background-color: rgba(255, 255, 255, 0.08);
-                            }
-                        }
-                    }
-                }
-
-                // --- Forgot Password Link ---
-                div.auxiliary-links {
-                    text-align: right;
-                    margin-top: -0.5rem; // Pull slightly closer to the input field
-
-                    div.forgot-password-link {
-                        a.link-text {
-                            @include app.body-text(0.9rem, 400);
-                            color: $accent-color;
-                            text-decoration: none;
-                            transition: color 300ms;
-
-                            &:hover {
-                                color: lighten($accent-color, 20%);
-                                text-decoration: underline;
-                            }
-                        }
-                    }
-                }
-                
-                // --- Action Button ---
-                div.action-buttons-group {
-                    margin-top: 1rem; // Extra space before the button
-
-                    button.primary-button.login-button {
-                        @include app.title-text(1.05rem, 700);
-                        width: 100%;
-                        padding: 0.8rem 1.5rem;
-                        color: $primary-color; // Dark text on light accent background
-                        background-color: $accent-color;
-                        border: none;
-                        border-radius: 8px;
-                        cursor: pointer;
-                        text-transform: uppercase;
-                        letter-spacing: 0.05em;
-                        transition: background-color 300ms, transform 150ms, box-shadow 300ms;
-                        
-                        &:hover {
-                            background-color: lighten($accent-color, 10%);
-                            transform: translateY(-2px);
-                            box-shadow: 0 5px 15px rgba($accent-color, 0.3);
-                        }
-
-                        &:active {
-                            transform: translateY(0);
-                            box-shadow: none;
-                        }
-
-                        &:disabled {
-                            background-color: rgba($accent-color, 0.5);
-                            cursor: not-allowed;
-                        }
-                    }
-                }
-            }
-
-            // --- Card Footer/Signup Prompt ---
-            div.card-footer {
-                text-align: center;
-                margin-top: 2rem;
-                padding-top: 1.5rem;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-
-                p.signup-prompt {
-                    @include app.body-text(0.95rem, 400);
-                    color: lighten($text-color, 40%);
-
-                    a.link-text.signup-link {
-                        color: $accent-color;
-                        font-weight: 600;
-                        text-decoration: none;
-                        transition: color 300ms;
-
-                        &:hover {
-                            color: lighten($accent-color, 20%);
-                            text-decoration: underline;
-                        }
-                    }
-                }
-            }
+        h1.card-title {
+          @include app.title-text(1.8rem, 600);
+          color: $accent-color;
+          margin-bottom: 0.5rem;
         }
+
+        p.card-subtitle {
+          @include app.body-text(0.95rem, 400);
+          color: lighten($text-color, 40%);
+        }
+      }
+
+      form.login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        div.input-group {
+          label.form-label {
+            @include app.body-text(0.9rem, 600);
+            display: block;
+            margin-bottom: 0.4rem;
+            color: $text-color;
+          }
+
+          div.input-field-wrapper {
+            position: relative;
+
+            input.form-input {
+              @include app.body-text(1rem, 400);
+              width: 100%;
+              padding: 0.75rem 1rem;
+              background-color: rgba(255, 255, 255, 0.05);
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              border-radius: 8px;
+              color: $text-color;
+              transition: border-color 300ms, box-shadow 300ms;
+              box-sizing: border-box;
+
+              &::placeholder {
+                color: rgba(255, 255, 255, 0.4);
+              }
+
+              &:focus {
+                outline: none;
+                border-color: $accent-color;
+                box-shadow: 0 0 0 2px rgba($accent-color, 0.3);
+                background-color: rgba(255, 255, 255, 0.08);
+              }
+            }
+          }
+        }
+
+        div.auxiliary-links {
+          text-align: right;
+          margin-top: -0.5rem;
+
+          div.forgot-password-link {
+            a.link-text {
+              @include app.body-text(0.9rem, 400);
+              color: $accent-color;
+              text-decoration: none;
+              transition: color 300ms;
+
+              &:hover {
+                color: lighten($accent-color, 20%);
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+
+        div.action-buttons-group {
+          margin-top: 1rem;
+
+          button.primary-button.login-button {
+            @include app.title-text(1.05rem, 700);
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            color: $primary-color;
+            background-color: $accent-color;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background-color 300ms, transform 150ms, box-shadow 300ms;
+
+            &:hover {
+              background-color: lighten($accent-color, 10%);
+              transform: translateY(-2px);
+              box-shadow: 0 5px 15px rgba($accent-color, 0.3);
+            }
+
+            &:active {
+              transform: translateY(0);
+              box-shadow: none;
+            }
+
+            &:disabled {
+              background-color: rgba($accent-color, 0.5);
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+
+      div.card-footer {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+        p.signup-prompt {
+          @include app.body-text(0.95rem, 400);
+          color: lighten($text-color, 40%);
+
+          a.link-text.signup-link {
+            cursor: pointer;
+            color: $accent-color;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 300ms;
+
+            &:hover {
+              color: lighten($accent-color, 20%);
+              text-decoration: underline;
+            }
+          }
+        }
+      }
     }
+  }
 }

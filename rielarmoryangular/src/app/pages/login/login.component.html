@@ -11,68 +11,67 @@
             </div>
 
             <!-- Form Content Area -->
-    <form class="login-form" (ngSubmit)="onSubmit()">
+            <form class="login-form" (ngSubmit)="onSubmit()">
 
-        <!-- Username Input Group -->
-        <div class="input-group email-group">
-            <label for="username" class="form-label">Username</label>
-            <div class="input-field-wrapper">
-            <input 
-                type="text" 
-                id="username" 
-                class="form-input email-input" 
-                placeholder="Enter your username" 
-                required
-                [(ngModel)]="username"
-                name="username"
-                autocomplete="current-password"
-            >
-            </div>
-        </div>
+                <!-- Username Input Group -->
+                <div class="input-group email-group">
+                    <label for="username" class="form-label">Username</label>
+                    <div class="input-field-wrapper">
+                    <input 
+                        type="text" 
+                        id="username" 
+                        class="form-input email-input" 
+                        placeholder="Enter your username" 
+                        required
+                        [(ngModel)]="username"
+                        name="username"
+                        autocomplete="current-password"
+                    >
+                    </div>
+                </div>
 
-        <!-- Password Input Group -->
-        <div class="input-group password-group">
-            <label for="password" class="form-label">Password</label>
-            <div class="input-field-wrapper">
-            <input 
-                type="password" 
-                id="password" 
-                class="form-input password-input" 
-                placeholder="Enter your password" 
-                required
-                [(ngModel)]="password"
-                name="password"
-                autocomplete="current-password"
-            >
-            </div>
-        </div>
+                <!-- Password Input Group -->
+                <div class="input-group password-group">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-field-wrapper">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        class="form-input password-input" 
+                        placeholder="Enter your password" 
+                        required
+                        [(ngModel)]="password"
+                        name="password"
+                        autocomplete="current-password"
+                    >
+                    </div>
+                </div>
 
-        <!-- Error Message -->
-        <div *ngIf="errorMessage" class="error-message" style="color:red; margin-bottom: 1em;">
-            {{ errorMessage }}
-        </div>
+                <!-- Error Message -->
+                <div *ngIf="errorMessage" class="error-message" style="color:red; margin-bottom: 1em;">
+                    {{ errorMessage }}
+                </div>
 
-        <!-- Forgot Password Link
-        <div class="auxiliary-links">
-            <div class="forgot-password-link">
-            <a href="#" class="link-text">Forgot Password?</a>
-            </div>
-        </div> -->
+                <!-- Forgot Password Link
+                <div class="auxiliary-links">
+                    <div class="forgot-password-link">
+                    <a href="#" class="link-text">Forgot Password?</a>
+                    </div>
+                </div> -->
 
-        <!-- Action Button -->
-        <div class="action-buttons-group">
-            <button type="submit" class="primary-button login-button">Log In</button>
-        </div>
+                <!-- Action Button -->
+                <div class="action-buttons-group">
+                    <button type="submit" class="primary-button login-button">Log In</button>
+                </div>
 
-    </form>
+            </form>
 
 
             <!-- Card Footer/Signup Prompt -->
             <div class="card-footer">
                 <p class="signup-prompt">
                     Don't have an account?
-                    <!-- The routerLink attribute is Angular-specific but included here for context -->
-                    <a class="link-text signup-link" routerLink="/register">Create Account</a>
+                    <a class="link-text signup-link" routerLink="/signup">Create Account</a>
                 </p>
             </div>
 

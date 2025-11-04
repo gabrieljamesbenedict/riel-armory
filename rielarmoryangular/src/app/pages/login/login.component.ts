@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink, RouterOutlet],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -22,6 +22,11 @@ export class LoginComponent {
   ) {}
 
   onSubmit() {
+    const token = this.authService.getToken();
+    if (token) {
+      this.router.navigate(['/']);
+    }
+
     if (!this.username || !this.password) {
       this.errorMessage = 'Username and password are required';
       return;
@@ -29,8 +34,7 @@ export class LoginComponent {
 
     this.authService.login(this.username, this.password).subscribe({
       next: (response) => {
-        // Token is saved automatically by AuthService
-        this.router.navigate(['/']); // redirect to protected page
+        this.router.navigate(['/']);
       },
       error: (err) => {
         console.error(err);
