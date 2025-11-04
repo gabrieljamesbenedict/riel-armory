@@ -1,0 +1,74 @@
+@use "../../app.component.scss" as app;
+
+$div-border-debug: false;
+
+div.store-container {
+
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    height: 100vh;
+    padding: 2rem;
+
+    div.store-filter-bar {
+        @if ($div-border-debug) { border: 1px red solid; }
+
+        flex: 0 0 20vw;
+
+        form.search-bar {
+            @if ($div-border-debug) { border: 1px blue solid; }
+
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+
+            input.search-text {
+                flex: 1;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0.5rem;
+
+                @include app.body-text(0.8rem, 400);
+                margin-bottom: 0;
+            }
+
+            button.search-button {
+                flex: 1;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0.5rem;
+                cursor: pointer;
+
+                background-color: app.$accent-color;
+                border: none;
+                color: white;
+
+                @include app.body-text(0.8rem, 400);
+                margin-bottom: 0;
+
+                transition: background-color 300ms;
+
+                &:hover {   
+                    background-color: lighten(app.$accent-color, 10%);
+                }
+
+                &:active {
+                    background-color: lighten(app.$accent-color, 25%);
+                }
+            }
+        }
+
+
+
+    }
+
+    div.store-body {
+        @if ($div-border-debug) { border: 1px red solid; }
+
+        flex: 1 0 auto;
+
+    }
+
+}

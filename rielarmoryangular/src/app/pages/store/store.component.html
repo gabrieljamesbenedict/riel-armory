@@ -1,1 +1,29 @@
-<p>store works!</p>
+<div class="store-container">
+    <div class="store-filter-bar">
+        
+        <form action="/store/search" class="search-bar">
+            <input 
+                class="search-text"
+                type="text" 
+                placeholder="Search..." 
+                aria-label="Search"
+                required
+            >
+            <button type="submit" class="search-button" for="search-text">Search</button>
+        </form>
+
+        <div class="category-list">
+            <h1>Categories</h1>
+            <ul>
+                @for (category of categories; track category.categoryId) {
+                    <li>{{category.name}}</li>
+                }
+            </ul>
+        </div>
+        
+
+    </div>
+    <div class="store-body">
+
+    </div>
+</div>
