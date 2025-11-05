@@ -67,7 +67,8 @@
               "buildTarget": "rielarmoryangular:build:production"
             },
             "development": {
-              "buildTarget": "rielarmoryangular:build:development"
+              "buildTarget": "rielarmoryangular:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
