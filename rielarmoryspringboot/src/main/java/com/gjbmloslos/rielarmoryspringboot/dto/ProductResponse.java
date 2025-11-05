@@ -1,10 +1,12 @@
 package com.gjbmloslos.rielarmoryspringboot.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.Set;
 
 @Data
+@Builder
 public class ProductResponse {
     private Long productId;
     private String name;

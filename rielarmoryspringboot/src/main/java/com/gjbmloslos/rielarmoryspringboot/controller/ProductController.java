@@ -1,6 +1,7 @@
 package com.gjbmloslos.rielarmoryspringboot.controller;
 
-import com.gjbmloslos.rielarmoryspringboot.model.Product;
+import com.gjbmloslos.rielarmoryspringboot.dto.ProductRequest;
+import com.gjbmloslos.rielarmoryspringboot.dto.ProductResponse;
 import com.gjbmloslos.rielarmoryspringboot.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,23 +18,29 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product request) {
-        return ResponseEntity.ok(productService.createProduct(request));
+    public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody ProductRequest request) {
+        ProductResponse response = productService.createProduct(request);
+        return ResponseEntity.ok(response);
     }
 
-    @GetMapping("all")
-    public ResponseEntity<List<Product>> getAllProducts() {
-        return ResponseEntity.ok(productService.getAllProducts());
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductResponse>> getAllProducts() {
+        List<ProductResponse> responses = productService.getAllProducts();
+        return ResponseEntity.ok(responses);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getProductById(id));
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id) {
+        ProductResponse response = productService.getProductById(id);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Valid @RequestBody Product request) {
-        return ResponseEntity.ok(productService.updateProduct(id, request));
+    public ResponseEntity<ProductResponse> updateProduct(
+            @PathVariable Long id,
+            @Valid @RequestBody ProductRequest request) {
+        ProductResponse response = productService.updateProduct(id, request);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
@@ -41,4 +48,5 @@ public class ProductController {
         productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
+
 }

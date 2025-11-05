@@ -1,10 +1,12 @@
 package com.gjbmloslos.rielarmoryspringboot.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.Set;
 
 @Data
+@Builder
 public class ProductRequest {
     private String name;                // required
     private String description;         // optional
