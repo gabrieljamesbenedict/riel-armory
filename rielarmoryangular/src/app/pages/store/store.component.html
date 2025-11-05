@@ -58,17 +58,28 @@
                 }
 
                 <p class="product-price">
-                    Price: {{ product.price }}
+                    {{ product.price | currency:'PHP' }}
+                </p>
+
+                <p class="product-stock">
+                    In Stock: {{ product.stock }}
                 </p>
 
                 <p class="product-description">
-                    {{ product.description }}... 
+                    {{ product.description }}
                 </p>
 
-                <button class="details-button" (click)="viewProductDetails(product.productId)">
-                    View Details
-                </button>
-                
+                @if (product.stock > 0) {
+                    <button class="details-button" (click)="viewProductDetails(product)">
+                        Buy Now
+                    </button>
+                } @else {
+                     <button class="details-button" style="background-color: grey; cursor: default;">
+                        Out of Stock
+                    </button>
+                }
+                   
+        
             </div>
         }
     </div>

@@ -157,6 +157,13 @@ div.store-container {
                 margin-bottom: 0;
             }
 
+            p.product-stock {
+                @include app.body-text(0.9rem, 600);
+                color: #666;
+                flex-grow: 1;
+                margin-bottom: 0;
+            }
+
             p.product-description {
                 @include app.body-text(0.9rem, 400);
                 color: #666;

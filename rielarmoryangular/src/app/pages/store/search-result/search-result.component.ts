@@ -13,9 +13,11 @@ import { Manufacturer } from '../../../model/manufacturer.model';
 import { Caliber } from '../../../model/caliber.model';
 import { Product } from '../../../model/product.model';
 
+import { CurrencyPipe } from '@angular/common';
+
 @Component({
   selector: 'app-store',
-  imports: [FormsModule], 
+  imports: [FormsModule, CurrencyPipe], 
   templateUrl: '../store.component.html',
   styleUrl: '../store.component.scss'
 })
@@ -66,8 +68,14 @@ export class SearchResultComponent implements OnInit {
     });
   }
 
-  viewProductDetails(productId: number) {
-
+  viewProductDetails(boughtProduct: Product) {
+    if (boughtProduct.stock > 0) {
+      alert("You have bought: " + boughtProduct.name)
+      boughtProduct.stock = boughtProduct.stock - 1
+      this.productService.updateProduct(boughtProduct.productId, boughtProduct).subscribe()
+    } else {
+      alert("Out of stock")
+    }
   }
 
 
@@ -105,7 +113,6 @@ export class SearchResultComponent implements OnInit {
         const searchTerm = params['q'] || '';
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
 
-        // Return the Observable chain for product fetching and filtering
         return this.productService.getAllProducts()
           .pipe(
             map(
