@@ -45,8 +45,9 @@ public class Product {
     @JoinColumn(name = "categoryId", nullable = false)
     private Category category;
 
-    @Column
-    private String caliber;
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "roleId", nullable = false)
+    private Caliber caliber;
 
     @Column
     private Long magazineCapacity;
