@@ -23,10 +23,11 @@ export class AuthService {
       );
   }
 
-  register(username: string, password: string, email: string) {
-    const roleId = 2; // 2 = Customer
-    return this.http.post<any>(`${this.apiUrl}/register`, { username, password , email, roleId});
-  }
+register(username: string, password: string, email: string) {
+  const roleId = 2; // 2 = Customer
+  return this.http.post(`${this.apiUrl}/register`, { username, password, email, roleId }, { responseType: 'text' });
+}
+
 
   logout() {
     localStorage.removeItem('token');

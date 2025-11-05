@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../service/auth.service';
@@ -21,16 +21,19 @@ export class SignupComponent {
   isLoading = signal(false);
   errorMessage = signal('');
 
-  constructor (
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  private authService: AuthService = inject(AuthService)
+  private router: Router = inject(Router)
 
   onSignup(): void {
     this.errorMessage.set('');
     
     if (!this.username() || !this.email() || !this.password() || !this.confirmPassword()) {
       this.errorMessage.set('All fields are required.');
+      return;
+    }
+
+    if (!(this.email().includes("@") && this.email().includes("."))) {
+      this.errorMessage.set('Invalid email address format.');
       return;
     }
 
@@ -46,9 +49,9 @@ export class SignupComponent {
       return;
     }
 
-    
     this.authService.register(this.username(), this.password(), this.email()).subscribe({
       next: (response) => {
+        const message = response;
         this.router.navigate(['/home']);
       },
       error: (err) => {
