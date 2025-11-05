@@ -1,84 +1,58 @@
 <div class="signup-page-wrapper">
-    <!-- Main container for the entire signup view -->
     <div class="signup-card-container">
-        <!-- The card or panel holding the form -->
         <div class="signup-card">
-
-            <!-- Card Header/Title Area -->
             <div class="card-header">
                 <h1 class="card-title">Create Account</h1>
                 <p class="card-subtitle">Register to explore Riel's Armory.</p>
             </div>
 
-            <!-- Form Content Area -->
             <form class="signup-form" (ngSubmit)="onSignup()">
-                
-                <!-- Username Input Group -->
                 <div class="input-group username-group">
                     <label for="username" class="form-label">Username</label>
                     <div class="input-field-wrapper">
-                        <!-- FIX: Added name="username" and [(ngModel)]="username" -->
                         <input type="text" id="username" name="username" class="form-input username-input" placeholder="Your unique username" required [(ngModel)]="username">
                     </div>
                 </div>
                 
-                <!-- Email Input Group -->
                 <div class="input-group email-group">
                     <label for="email" class="form-label">Email Address</label>
                     <div class="input-field-wrapper">
-                        <!-- FIX: Added name="email" and [(ngModel)]="email" -->
                         <input type="email" id="email" name="email" class="form-input email-input" placeholder="you@example.com" required [(ngModel)]="email">
                     </div>
                 </div>
 
-                <!-- Password Input Group -->
                 <div class="input-group password-group">
                     <label for="password" class="form-label">Password</label>
                     <div class="input-field-wrapper">
-                        <!-- FIX: Added name="password" and [(ngModel)]="password" -->
                         <input type="password" id="password" name="password" class="form-input password-input" placeholder="Enter password" required [(ngModel)]="password">
                     </div>
                 </div>
 
-                <!-- Confirm Password Input Group -->
                 <div class="input-group confirm-password-group">
                     <label for="confirmPassword" class="form-label">Confirm Password</label>
                     <div class="input-field-wrapper">
-                        <!-- FIX: Added name="confirmPassword" and [(ngModel)]="confirmPassword" -->
                         <input type="password" id="confirmPassword" name="confirmPassword" class="form-input confirm-password-input" placeholder="Re-enter password" required [(ngModel)]="confirmPassword">
                     </div>
                 </div>
 
-                <!-- NEW: Display Error Message based on errorMessage() signal -->
-                <div class="error-message-box" *ngIf="errorMessage() && errorMessage() !== 'Account successfully created! Redirecting to login...'">
-                    <p class="error-text">{{ errorMessage() }}</p>
+                <div class="error-message" *ngIf="errorMessage()">
+                    {{ errorMessage() }}
                 </div>
 
-                <!-- NEW: Display Success Message -->
-                <div class="success-message-box" *ngIf="errorMessage() === 'Account successfully created! Redirecting to login...'">
-                    <p class="success-text">{{ errorMessage() }}</p>
-                </div>
-
-                <!-- Action Button -->
                 <div class="action-buttons-group">
-                    <!-- Added [disabled] binding and conditional text for loading state -->
                     <button type="submit" class="primary-button signup-button" [disabled]="isLoading()">
                         <span *ngIf="!isLoading()">Sign Up</span>
                         <span *ngIf="isLoading()">Registering...</span>
                     </button>
                 </div>
-                
             </form>
 
-            <!-- Card Footer/Login Prompt -->
             <div class="card-footer">
                 <p class="login-prompt">
                     Already have an account?
-                    <!-- The routerLink attribute is Angular-specific but included here for context -->
                     <a class="link-text login-link" routerLink="/login">Log In</a>
                 </p>
             </div>
-
         </div>
     </div>
 </div>

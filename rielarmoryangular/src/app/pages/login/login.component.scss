@@ -64,7 +64,6 @@ div.login-page-wrapper {
           }
 
           div.input-field-wrapper {
-            position: relative;
 
             input.form-input {
               @include app.body-text(1rem, 400);
@@ -76,6 +75,7 @@ div.login-page-wrapper {
               color: $text-color;
               transition: border-color 300ms, box-shadow 300ms;
               box-sizing: border-box;
+              margin-bottom: 0;
 
               &::placeholder {
                 color: rgba(255, 255, 255, 0.4);
@@ -89,6 +89,14 @@ div.login-page-wrapper {
               }
             }
           }
+        }
+        
+        div.error-message {
+          @include app.body-text(1rem, 400);
+          color: app.$accent-color;
+          margin-bottom: 0;
+
+          text-align: center;
         }
 
         div.auxiliary-links {
@@ -111,8 +119,6 @@ div.login-page-wrapper {
         }
 
         div.action-buttons-group {
-          margin-top: 1rem;
-
           button.primary-button.login-button {
             @include app.title-text(1.05rem, 700);
             width: 100%;
@@ -125,6 +131,7 @@ div.login-page-wrapper {
             text-transform: uppercase;
             letter-spacing: 0.05em;
             transition: background-color 300ms, transform 150ms, box-shadow 300ms;
+            margin-bottom: 0;
 
             &:hover {
               background-color: lighten($accent-color, 10%);
@@ -154,6 +161,7 @@ div.login-page-wrapper {
         p.signup-prompt {
           @include app.body-text(0.95rem, 400);
           color: lighten($text-color, 40%);
+          margin-bottom: 0;
 
           a.link-text.signup-link {
             cursor: pointer;

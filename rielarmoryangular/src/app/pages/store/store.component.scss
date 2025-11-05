@@ -58,7 +58,7 @@ div.store-container {
                 color: white;
 
                 @include app.body-text(0.8rem, 400);
-                margin-bottom: 0;
+                margin: 0;
 
                 transition: background-color 300ms;
 
