@@ -13,6 +13,8 @@ import com.gjbmloslos.rielarmoryspringboot.repository.CategoryRepository;
 import com.gjbmloslos.rielarmoryspringboot.repository.CaliberRepository;
 import com.gjbmloslos.rielarmoryspringboot.repository.TagRepository;
 import com.gjbmloslos.rielarmoryspringboot.service.ProductService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -34,20 +36,26 @@ public class ProductServiceImpl implements ProductService {
     private final CaliberRepository caliberRepository;
     private final TagRepository tagRepository;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     // CREATE
     @Override
     @Transactional
     public ProductResponse createProduct(ProductRequest request) {
         Manufacturer manufacturer = manufacturerRepository.findById(request.getManufacturerId())
                 .orElseThrow(() -> new RuntimeException("Manufacturer not found"));
+
         Category category = categoryRepository.findById(request.getCategoryId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
+
         Caliber caliber = caliberRepository.findById(request.getCaliberId())
                 .orElseThrow(() -> new RuntimeException("Caliber not found"));
 
-        Set<Tag> tags = request.getTagIds() != null
-                ? new HashSet<>(tagRepository.findAllById(request.getTagIds()))
-                : Collections.emptySet();
+        Set<Tag> tags = Collections.emptySet();
+        if (request.getTagIds() != null && !request.getTagIds().isEmpty()) {
+            tags = new HashSet<>(tagRepository.findAllById(request.getTagIds()));
+        }
 
         Product product = Product.builder()
                 .name(request.getName())
@@ -57,28 +65,32 @@ public class ProductServiceImpl implements ProductService {
                 .manufacturer(manufacturer)
                 .category(category)
                 .caliber(caliber)
-                .tags(tags)
+                .tags(tags) // only Product holds the relationship
                 .magazineCapacity(request.getMagazineCapacity())
                 .build();
 
-        Product savedProduct = productRepository.save(product);
+        Product savedProduct = productRepository.saveAndFlush(product);
+        entityManager.detach(savedProduct);
         return toResponse(savedProduct);
     }
+
+
 
     // READ ALL
     @Override
     @Transactional(readOnly = true)
     public List<ProductResponse> getAllProducts() {
-        return productRepository.findAll().stream()
+        return productRepository.findAllWithAssociations()
+                .stream()
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }
 
-    // READ ONE
+    // READ BY ID
     @Override
     @Transactional(readOnly = true)
     public ProductResponse getProductById(Long id) {
-        Product product = productRepository.findById(id)
+        Product product = productRepository.findByIdWithAssociations(id)
                 .orElseThrow(() -> new RuntimeException("Product not found with id " + id));
         return toResponse(product);
     }
@@ -133,12 +145,17 @@ public class ProductServiceImpl implements ProductService {
     private ProductResponse toResponse(Product product) {
         if (product == null) return null;
 
-        // copy tags to a new HashSet to avoid ConcurrentModificationException
-        Set<String> tagNames = product.getTags() != null
-                ? new HashSet<>(product.getTags()).stream()
+        Set<String> tagNames = product.getTags()
+                .stream()
                 .map(Tag::getName)
-                .collect(Collectors.toSet())
-                : Collections.emptySet();
+                .collect(Collectors.toSet());
+
+//        Set<String> tagNames = Collections.unmodifiableSet(
+//                product.getTags()
+//                        .stream()
+//                        .map(Tag::getName)
+//                        .collect(Collectors.toSet())
+//        );
 
         return ProductResponse.builder()
                 .productId(product.getProductId())
