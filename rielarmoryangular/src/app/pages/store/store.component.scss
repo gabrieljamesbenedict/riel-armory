@@ -1,6 +1,6 @@
 @use "../../app.component.scss" as app;
 
-$div-border-debug: false;
+$div-border-debug: true;
 
 div.store-container {
 
@@ -8,13 +8,17 @@ div.store-container {
     flex-direction: row;
     gap: 1rem;
 
-    height: 100vh;
+    min-height: 100vh;
     padding: 2rem;
 
     div.store-filter-bar {
         @if ($div-border-debug) { border: 1px red solid; }
 
         flex: 0 0 20vw;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
 
         form.search-bar {
             @if ($div-border-debug) { border: 1px blue solid; }
@@ -60,7 +64,56 @@ div.store-container {
             }
         }
 
+        div.category-list {
+            @if ($div-border-debug) { border: 1px blue solid; }
 
+            h1 {
+                @include app.title-text(2rem, 400);
+                margin-bottom: 0;
+            }
+
+            ul {
+                @include app.body-text(1rem, 400);
+                margin-bottom: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+        }
+
+        div.manufacturer-list {
+            @if ($div-border-debug) { border: 1px blue solid; }
+
+            h1 {
+                @include app.title-text(2rem, 400);
+                margin-bottom: 0;
+            }
+
+            ul {
+                @include app.body-text(1rem, 400);
+                margin-bottom: 0;
+                padding: 0;
+                list-style: none;
+            }
+            
+        }
+
+        div.caliber-list {
+            @if ($div-border-debug) { border: 1px blue solid; }
+
+            h1 {
+                @include app.title-text(2rem, 400);
+                margin-bottom: 0;
+            }
+
+            ul {
+                @include app.body-text(1rem, 400);
+                margin-bottom: 0;
+                padding: 0;
+                list-style: none;
+            }
+            
+        }
 
     }
 

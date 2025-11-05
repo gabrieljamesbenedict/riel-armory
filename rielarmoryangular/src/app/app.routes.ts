@@ -47,10 +47,14 @@ export const routes: Routes = [
         loadComponent: () => import("./pages/legal/steps-to-apply/steps-to-apply.component").then(m => m.StepsToApplyComponent)
     },
 
-    // Protected routes
     {
         path: "store",
         loadComponent: () => import("./pages/store/store.component").then(m => m.StoreComponent),
+        canActivate: [AuthGuard]
+    },
+    {
+        path: "store/search",
+        loadComponent: () => import("./pages/store/search-result/search-result.component").then(m => m.SearchResultComponent),
         canActivate: [AuthGuard]
     },
 

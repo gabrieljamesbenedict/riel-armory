@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class CaliberService {
 
-  private apiUrl = '/api/caliber';
+  private apiUrl = '/api/calibers';
 
   constructor(private http: HttpClient) {}
 

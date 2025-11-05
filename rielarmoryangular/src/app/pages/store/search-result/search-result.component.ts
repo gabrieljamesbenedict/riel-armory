@@ -2,21 +2,22 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 
-import { CategoryService } from '../../service/category.service';
-import { ManufacturerService } from '../../service/manufacturer.service';
-import { CaliberService } from '../../service/caliber.service';
+import { CategoryService } from '../../../service/category.service';
+import { ManufacturerService } from '../../../service/manufacturer.service';
+import { CaliberService } from '../../../service/caliber.service';
 
-import { Category } from '../../model/category.model';
-import { Manufacturer } from '../../model/manufacturer.model';
-import { Caliber } from '../../model/caliber.model';
+import { Category } from '../../../model/category.model';
+import { Manufacturer } from '../../../model/manufacturer.model';
+import { Caliber } from '../../../model/caliber.model';
+
 
 @Component({
-  selector: 'app-store',
-  imports: [FormsModule], 
-  templateUrl: './store.component.html',
-  styleUrl: './store.component.scss'
+  selector: 'app-search-result',
+  imports: [FormsModule],
+  templateUrl: './search-result.component.html',
+  styleUrl: '../store.component.scss'
 })
-export class StoreComponent implements OnInit {
+export class SearchResultComponent {
 
   private router = inject(Router); 
   
@@ -70,6 +71,5 @@ export class StoreComponent implements OnInit {
         console.error('Error fetching categories:', err);
       }
     })
-    
   }
 }
