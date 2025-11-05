@@ -23,7 +23,7 @@
             <h1>Categories</h1>
             <ul>
                 @for (category of categories; track category.categoryId) {
-                    <li>{{category.name}}</li>
+                    <li (click)="selectCategory(category.name)" >{{category.name}}</li>
                 }
             </ul>
         </div>
@@ -31,8 +31,8 @@
         <div class="manufacturer-list">
             <h1>Manufacturers</h1>
             <ul>
-                @for (category of categories; track category.categoryId) {
-                    <li>{{category.name}}</li>
+                @for (manufacturer of manufacturers; track manufacturer.manufacturerId) {
+                    <li (click)="selectManufacturer(manufacturer.name)">{{manufacturer.name}}</li>
                 }
             </ul>
         </div>
@@ -41,7 +41,7 @@
             <h1>Calibers</h1>
             <ul>
                 @for (caliber of calibers; track caliber.caliberId) {
-                    <li>{{caliber.name}}</li>
+                    <li (click)="selectCaliber(caliber.name)">{{caliber.name}}</li>
                 }
             </ul>
         </div>
@@ -49,6 +49,27 @@
 
     </div>
     <div class="store-body">
+        @for (product of products; track product.name) {
+            <div class="product-card">
+                <h3 class="product-name">{{ product.name }}</h3>
+                
+                @if (product.imageName) {
+                    <img [src]="'/assets/images/products/' + product.imageName" [alt]="product.name">
+                }
 
+                <p class="product-price">
+                    Price: {{ product.price }}
+                </p>
+
+                <p class="product-description">
+                    {{ product.description }}... 
+                </p>
+
+                <button class="details-button" (click)="viewProductDetails(product.productId)">
+                    View Details
+                </button>
+                
+            </div>
+        }
     </div>
 </div>

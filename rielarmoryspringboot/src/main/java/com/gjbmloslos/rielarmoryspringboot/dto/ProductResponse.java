@@ -20,5 +20,6 @@ public class ProductResponse {
     private String caliberName;
 
     private Long magazineCapacity;
+    private String imageName;
 }
 

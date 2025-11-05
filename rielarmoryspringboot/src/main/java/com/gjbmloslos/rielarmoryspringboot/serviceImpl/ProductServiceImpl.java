@@ -150,13 +150,6 @@ public class ProductServiceImpl implements ProductService {
                 .map(Tag::getName)
                 .collect(Collectors.toSet());
 
-//        Set<String> tagNames = Collections.unmodifiableSet(
-//                product.getTags()
-//                        .stream()
-//                        .map(Tag::getName)
-//                        .collect(Collectors.toSet())
-//        );
-
         return ProductResponse.builder()
                 .productId(product.getProductId())
                 .name(product.getName())
@@ -168,6 +161,7 @@ public class ProductServiceImpl implements ProductService {
                 .caliberName(product.getCaliber() != null ? product.getCaliber().getName() : null)
                 .magazineCapacity(product.getMagazineCapacity())
                 .tagNames(tagNames)
+                .imageName(product.getImageName())
                 .build();
     }
 }

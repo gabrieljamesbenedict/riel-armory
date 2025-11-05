@@ -1,11 +1,12 @@
 @use "../../app.component.scss" as app;
 
-$div-border-debug: true;
+$div-border-debug: false;
 
 div.store-container {
 
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
     gap: 1rem;
 
     min-height: 100vh;
@@ -19,6 +20,13 @@ div.store-container {
         display: flex;
         flex-direction: column;
         gap: 1rem;
+
+        // position: sticky;
+        // top: 11vh;
+
+        @include app.respond("sm") {
+            display: none;
+        }
 
         form.search-bar {
             @if ($div-border-debug) { border: 1px blue solid; }
@@ -64,7 +72,7 @@ div.store-container {
             }
         }
 
-        div.category-list {
+        div.category-list, div.manufacturer-list, div.caliber-list {
             @if ($div-border-debug) { border: 1px blue solid; }
 
             h1 {
@@ -77,50 +85,110 @@ div.store-container {
                 margin-bottom: 0;
                 padding: 0;
                 list-style: none;
+
+                li {
+                    cursor: pointer;
+                    padding: 4px 8px;
+                    transition: background-color 0.2s ease, color 0.2s ease;
+                    margin-bottom: 2px;
+                    
+                    color: app.$primary-color;
+
+                    &:hover {
+                        background-color: lighten(app.$accent-color, 35%); 
+                        color: darken(app.$primary-color, 10%);
+                    }
+                    &:active {
+                        background-color: lighten(app.$accent-color, 25%); 
+                    }
+                }
             }
-
-        }
-
-        div.manufacturer-list {
-            @if ($div-border-debug) { border: 1px blue solid; }
-
-            h1 {
-                @include app.title-text(2rem, 400);
-                margin-bottom: 0;
-            }
-
-            ul {
-                @include app.body-text(1rem, 400);
-                margin-bottom: 0;
-                padding: 0;
-                list-style: none;
-            }
-            
-        }
-
-        div.caliber-list {
-            @if ($div-border-debug) { border: 1px blue solid; }
-
-            h1 {
-                @include app.title-text(2rem, 400);
-                margin-bottom: 0;
-            }
-
-            ul {
-                @include app.body-text(1rem, 400);
-                margin-bottom: 0;
-                padding: 0;
-                list-style: none;
-            }
-            
         }
 
     }
 
     div.store-body {
         @if ($div-border-debug) { border: 1px red solid; }
+        
+        flex: 1 1 auto;
 
-        flex: 1 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+        
+        div.product-card {
+            
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden; 
+            background-color: #ffffff; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            
+            display: flex;
+            flex-direction: column;
+            
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            height: 350px;
+            padding: 2rem 1rem;
+            
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+            img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-bottom: 1px solid lighten(app.$accent-color, 10%);
+                margin: 1rem 0 1rem 0;
+            }
+
+            h3.product-name {
+                @include app.title-text(1.5rem, 400); 
+                color: app.$primary-color;
+                margin-bottom: 0;
+            }
+
+            p.product-price {
+                @include app.body-text(1.1rem, 700); 
+                color: darken(app.$accent-color, 10%);
+                margin-bottom: 0;
+            }
+
+            p.product-description {
+                @include app.body-text(0.9rem, 400);
+                color: #666;
+                flex-grow: 1;
+                margin-bottom: 0;
+            }
+
+            .details-button {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 1rem;
+                cursor: pointer;
+
+                background-color: app.$accent-color;
+                border: none;
+                color: white;
+
+                @include app.body-text(0.8rem, 400);
+                margin-bottom: 0;
+                margin-top: 1.5rem;
+
+                transition: background-color 300ms;
+
+                &:hover {   
+                    background-color: lighten(app.$accent-color, 10%);
+                }
+
+                &:active {
+                    background-color: lighten(app.$accent-color, 25%);
+                }
+            }
+        }
 
     }
 
