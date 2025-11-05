@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
@@ -8,6 +8,8 @@ import { Observable, tap } from 'rxjs';
 export class AuthService {
   
   private apiUrl = '/api/auth';
+  private tokenSignal = signal<string | null>(localStorage.getItem('token'));
+  public token = this.tokenSignal.asReadonly();
 
   constructor(private http: HttpClient) {}
 
@@ -16,11 +18,11 @@ export class AuthService {
       .pipe(
         tap(response => {
           localStorage.setItem('token', response.token);
+          this.tokenSignal.set(response.token);
         })
       );
   }
 
-  
   register(username: string, password: string, email: string) {
     const roleId = 1;
     return this.http.post<any>(`${this.apiUrl}/register`, { username, password , email, roleId});
@@ -28,6 +30,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    this.tokenSignal.set(null);
   }
 
   getToken(): string | null {

@@ -1,32 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, CommonModule, RouterLink, RouterOutlet],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   username: string = '';
   password: string = '';
   errorMessage: string = '';
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  private authService: AuthService = inject(AuthService);
+  private router: Router = inject(Router)
 
-  onSubmit() {
+  constructor() {}
+  
+  ngOnInit(): void {
     const token = this.authService.getToken();
     if (token) {
       this.router.navigate(['/']);
     }
+  }
 
+  onSubmit() {
     if (!this.username || !this.password) {
       this.errorMessage = 'Username and password are required';
       return;
