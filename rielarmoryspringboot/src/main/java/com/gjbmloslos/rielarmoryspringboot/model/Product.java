@@ -29,7 +29,7 @@ public class Product {
     @Column(nullable = false)
     private Double price;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "product_tag",
             joinColumns = @JoinColumn(name = "productId"),
@@ -37,15 +37,15 @@ public class Product {
     )
     private Set<Tag> tags = new HashSet<>();
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "manufacturerId", nullable = false)
     private Manufacturer manufacturer;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "categoryId", nullable = false)
     private Category category;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "roleId", nullable = false)
     private Caliber caliber;
 
