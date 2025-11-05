@@ -13,11 +13,11 @@ import { Manufacturer } from '../../../model/manufacturer.model';
 import { Caliber } from '../../../model/caliber.model';
 import { Product } from '../../../model/product.model';
 
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-store',
-  imports: [FormsModule, CurrencyPipe], 
+  imports: [FormsModule, CurrencyPipe, NgForOf], 
   templateUrl: '../store.component.html',
   styleUrl: '../store.component.scss'
 })
@@ -122,11 +122,12 @@ export class SearchResultComponent implements OnInit {
                   || incomingProduct.caliberName.toLowerCase().includes(lowerCaseSearchTerm)
                   || incomingProduct.manufacturerName.toLowerCase().includes(lowerCaseSearchTerm)
                   || incomingProduct.categoryName.toLowerCase().includes(lowerCaseSearchTerm)
+                  || incomingProduct.tagNames.includes(lowerCaseSearchTerm)
               )
             )
           );
       })
-    ) // Subscribe to the final filtered Observable
+    )
     .subscribe({
       next: (data) => {
         this.products = data;

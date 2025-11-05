@@ -113,7 +113,6 @@ export class StoreComponent implements OnInit {
         const searchTerm = params['q'] || '';
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
 
-        // Return the Observable chain for product fetching and filtering
         return this.productService.getAllProducts()
           .pipe(
             map(
@@ -123,11 +122,12 @@ export class StoreComponent implements OnInit {
                   || incomingProduct.caliberName.toLowerCase().includes(lowerCaseSearchTerm)
                   || incomingProduct.manufacturerName.toLowerCase().includes(lowerCaseSearchTerm)
                   || incomingProduct.categoryName.toLowerCase().includes(lowerCaseSearchTerm)
+                  || incomingProduct.tagNames.includes(lowerCaseSearchTerm)
               )
             )
           );
       })
-    ) // Subscribe to the final filtered Observable
+    )
     .subscribe({
       next: (data) => {
         this.products = data;

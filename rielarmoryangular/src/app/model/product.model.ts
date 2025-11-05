@@ -12,5 +12,5 @@ export interface Product {
   tagNames: string[];
   caliberName: string;
   magazineCapacity: number;
-  imageName: string;
+  imageName?: string;
 }
