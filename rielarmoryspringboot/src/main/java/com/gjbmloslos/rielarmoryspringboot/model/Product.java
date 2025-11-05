@@ -46,10 +46,12 @@ public class Product {
     private Category category;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "roleId", nullable = false)
+    @JoinColumn(name = "caliberId", nullable = false)
     private Caliber caliber;
 
     @Column
     private Long magazineCapacity;
 
+    @Column
+    private String imageName;
 }

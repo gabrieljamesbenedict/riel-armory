@@ -27,7 +27,4 @@ public class Tag {
     @Column
     private String description;
 
-    @ManyToMany(mappedBy = "tags")
-    private Set<Product> products = new HashSet<>();
-
 }
