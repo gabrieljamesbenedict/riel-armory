@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
@@ -11,7 +11,9 @@ export class AuthService {
   private tokenSignal = signal<string | null>(localStorage.getItem('token'));
   public token = this.tokenSignal.asReadonly();
 
-  constructor(private http: HttpClient) {}
+  private http: HttpClient = inject(HttpClient)
+
+  constructor() {}
 
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, { username, password })

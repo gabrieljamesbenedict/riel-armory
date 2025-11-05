@@ -1,7 +1,7 @@
 <div class="store-container">
     <div class="store-filter-bar">
         
-        <form (ngSubmit)="submitSearch(searchForm)" 
+        <form (ngSubmit)="storeService.submitSearch(searchForm)" 
             #searchForm="ngForm" 
             class="search-bar">
     
@@ -23,7 +23,7 @@
             <h1>Categories</h1>
             <ul>
                 @for (category of categories; track category.categoryId) {
-                    <li (click)="selectCategory(category.name)" >{{category.name}}</li>
+                    <li (click)="storeService.selectCategory(category.name)" >{{category.name}}</li>
                 }
             </ul>
         </div>
@@ -32,7 +32,7 @@
             <h1>Manufacturers</h1>
             <ul>
                 @for (manufacturer of manufacturers; track manufacturer.manufacturerId) {
-                    <li (click)="selectManufacturer(manufacturer.name)">{{manufacturer.name}}</li>
+                    <li (click)="storeService.selectManufacturer(manufacturer.name)">{{manufacturer.name}}</li>
                 }
             </ul>
         </div>
@@ -41,7 +41,7 @@
             <h1>Calibers</h1>
             <ul>
                 @for (caliber of calibers; track caliber.caliberId) {
-                    <li (click)="selectCaliber(caliber.name)">{{caliber.name}}</li>
+                    <li (click)="storeService.selectCaliber(caliber.name)">{{caliber.name}}</li>
                 }
             </ul>
         </div>
@@ -54,9 +54,15 @@
                 
                 <div class="product-info-container">
                     @if (product.imageName) {
-                    <img [src]="product.imageName" [alt]="product.name">
+                        <img 
+                            [src]="apiUrl + '/' + product.productId" 
+                            [alt]="product.name"
+                        />
                     } @else {
-                        <img src="assets/images/gun-not-found.png" [alt]="product.name">
+                        <img 
+                            src="assets/images/gun-not-found.png" 
+                            [alt]="product.name"
+                        />
                     }
 
                     <h3 class="product-name">{{ product.name }}</h3>
@@ -80,7 +86,7 @@
 
                 <div class="product-button-container">
                     @if (product.stock > 0) {
-                        <button class="details-button" (click)="viewProductDetails(product)">
+                        <button class="details-button" (click)="storeService.viewProductDetails(product)">
                             Buy Now
                         </button>
                     } @else {
@@ -88,9 +94,12 @@
                             Out of Stock
                         </button>
                     }
+                    <div>
+                        <input type="file" (change)="onFileSelected($event, product.productId)" #fileInput />
+                        <button (click)="uploadImage()">Upload Image</button>
+                    </div>
                 </div>
-                
-                   
+
             </div>
         }
         

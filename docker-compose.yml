@@ -33,6 +33,8 @@ services:
       DB_PASS: password
     ports:
       - "8080:8080"
+    volumes:
+      - ./uploads:/app/uploads
     networks:
       - rielarmory-network
 

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
-import { take, map, switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import { CategoryService } from '../../../service/category.service';
 import { ManufacturerService } from '../../../service/manufacturer.service';
@@ -13,7 +13,10 @@ import { Manufacturer } from '../../../model/manufacturer.model';
 import { Caliber } from '../../../model/caliber.model';
 import { Product } from '../../../model/product.model';
 
+import { StoreService } from '../../../service/store.service';
+
 import { CurrencyPipe, NgForOf } from '@angular/common';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-store',
@@ -36,48 +39,52 @@ export class SearchResultComponent implements OnInit {
   public calibers: Caliber[] = []
   public products: Product[] = []
 
+  public storeService: StoreService = inject(StoreService)
+
+  public apiUrl = "/api/products/image";
+
+  selectedFile: File | null = null;
+  uploadingProductId: number | null = null;
+  uploadProgress: number = 0;
+
   constructor() {}
 
-  submitSearch(form: NgForm) {
-    const searchTerm = form.value.query; 
 
-    if (searchTerm) {
-      this.router.navigate(['/store/search'], {
-        queryParams: { q: searchTerm } 
-      });
-      
-      form.resetForm({ query: '' }); 
+  onFileSelected(event: Event, productId: number): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      this.uploadingProductId = productId;
     }
   }
 
-  selectCategory(selected: String) {
-    this.router.navigate(['/store/search'], {
-      queryParams: { q: selected } 
-    });
-  }
 
-  selectManufacturer(selected: String) {
-    this.router.navigate(['/store/search'], {
-      queryParams: { q: selected } 
-    });
-  }
-
-  selectCaliber(selected: String) {
-    this.router.navigate(['/store/search'], {
-      queryParams: { q: selected } 
-    });
-  }
-
-  viewProductDetails(boughtProduct: Product) {
-    if (boughtProduct.stock > 0) {
-      alert("You have bought: " + boughtProduct.name)
-      boughtProduct.stock = boughtProduct.stock - 1
-      this.productService.updateProduct(boughtProduct.productId, boughtProduct).subscribe()
-    } else {
-      alert("Out of stock")
+  uploadImage(): void {
+    if (!this.selectedFile || !this.uploadingProductId) {
+      alert('Please select a file first.');
+      return;
     }
-  }
 
+    this.storeService.uploadProductImage(this.uploadingProductId, this.selectedFile).subscribe({
+      next: (event) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.uploadProgress = Math.round((100 * event.loaded) / (event.total || 1));
+        } else if (event.type === HttpEventType.Response) {
+          //alert('Image uploaded successfully!');
+          this.uploadProgress = 0;
+          this.selectedFile = null;
+          this.uploadingProductId = null;
+          // Optional: refresh product list
+          this.ngOnInit();
+        }
+      },
+      error: (err) => {
+        console.error('Upload failed:', err);
+        alert('Failed to upload image.');
+        this.uploadProgress = 0;
+      }
+    });
+  }
 
   ngOnInit(): void {
 
