@@ -15,12 +15,12 @@ import { Product } from '../../../model/product.model';
 
 import { StoreService } from '../../../service/store.service';
 
-import { CurrencyPipe, NgForOf } from '@angular/common';
+import { CurrencyPipe, NgForOf, NgIf } from '@angular/common';
 import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-store',
-  imports: [FormsModule, CurrencyPipe, NgForOf], 
+  imports: [FormsModule, CurrencyPipe, NgForOf, NgIf], 
   templateUrl: '../store.component.html',
   styleUrl: '../store.component.scss'
 })
@@ -47,8 +47,13 @@ export class SearchResultComponent implements OnInit {
   uploadingProductId: number | null = null;
   uploadProgress: number = 0;
 
+  showingFilter = false;
+
   constructor() {}
 
+  toggleFilter() {
+    this.showingFilter = !this.showingFilter
+  }
 
   onFileSelected(event: Event, productId: number): void {
     const input = event.target as HTMLInputElement;

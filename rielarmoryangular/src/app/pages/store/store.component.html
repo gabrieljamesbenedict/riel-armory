@@ -1,9 +1,13 @@
 <div class="store-container">
-    <div class="store-filter-bar">
+    <div class="store-filter-bar" [class.open]="showingFilter">
         
         <form (ngSubmit)="storeService.submitSearch(searchForm)" 
             #searchForm="ngForm" 
             class="search-bar">
+
+            <button class="hamburger" (click)="toggleFilter()">
+                &#9776;
+            </button>
     
             <input 
                 class="search-text"

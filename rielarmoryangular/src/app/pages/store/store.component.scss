@@ -21,11 +21,57 @@ div.store-container {
         flex-direction: column;
         gap: 1rem;
 
-        // position: sticky;
-        // top: 11vh;
+        transition: background-color 0.2s ease, color 0.2s ease;
+
+        button.hamburger {
+            display: none;
+            position: fixed;
+            top: 10vh;
+            left: 0;
+            font-size: 4rem;
+            background: app.$primary-color;
+            background-color: rgba(0, 0, 0, 0.7);
+            background-blend-mode: multiply;
+            padding: 0rem 0.5rem;
+
+            border-radius: 0 0 25px 0;
+
+            @include app.respond("sm") {
+                display: block;
+                
+                border: none;
+                cursor: pointer;
+                color: app.$accent-color;
+                z-index: 1000;
+                
+                transition: left 400ms ease-in-out;
+            }
+        }
+
 
         @include app.respond("sm") {
-            display: none;
+            width: 70vw;
+            height: 100%;
+            position: fixed;
+            top: 10vh;
+            left: calc(15px - 80vw);
+            overflow-y: auto;
+            background-color: app.$primary-color;
+            color: white;
+            padding: 1rem;
+
+            transition: left 400ms ease-in-out;
+
+            &.open {
+                left: 0;
+                button.hamburger {
+                    left: calc(70vw + 25px);
+                }
+            }
+        }
+
+        @include app.respond("xs") {
+           //width: 80vw;
         }
 
         form.search-bar {
@@ -93,6 +139,10 @@ div.store-container {
                     margin-bottom: 2px;
                     
                     color: app.$primary-color;
+
+                    @include app.respond("sm") {
+                        color: white;
+                    }
 
                     &:hover {
                         background-color: lighten(app.$accent-color, 35%); 

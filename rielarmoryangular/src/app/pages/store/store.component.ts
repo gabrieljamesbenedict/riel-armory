@@ -47,8 +47,13 @@ export class StoreComponent implements OnInit {
   uploadingProductId: number | null = null;
   uploadProgress: number = 0;
 
+  showingFilter = false;
+
   constructor() {}
 
+  toggleFilter() {
+    this.showingFilter = !this.showingFilter
+  }
 
   onFileSelected(event: Event, productId: number): void {
     const input = event.target as HTMLInputElement;
