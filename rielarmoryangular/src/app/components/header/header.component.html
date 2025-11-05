@@ -1,14 +1,19 @@
 <nav class="navigationbar">
-    <div>
-        <h1><a routerLink="/home">Riel's Armory</a></h1>
-        @if (token()) {
-            <ul>
-                <li><a routerLink="/home">Home</a></li>
-                <li><a routerLink="/legal">Legal</a></li>
-                <li><a routerLink="/store">Store</a></li>
-                <!-- <li><a routerLink="/checkout">Checkout</a></li> -->
-                <li><a (click)="logoutUser()">Log Out</a></li>
-            </ul>
-        }
-    </div>
+  <div>
+    <h1><a routerLink="/home">Riel's Armory</a></h1>
+
+    <button class="hamburger" (click)="menuOpen = !menuOpen">
+      &#9776;
+    </button>
+
+    @if (token()) {
+      <ul [class.open]="menuOpen">
+        <li><a routerLink="/home">Home</a></li>
+        <li><a routerLink="/legal">Legal</a></li>
+        <li><a routerLink="/store">Store</a></li>
+        <!-- <li><a routerLink="/checkout">Checkout</a></li> -->
+        <li><a (click)="logoutUser()">Log Out</a></li>
+      </ul>
+    }
+  </div>
 </nav>

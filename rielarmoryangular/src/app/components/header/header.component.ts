@@ -10,6 +10,8 @@ import { AuthService } from '../../service/auth.service';
 })
 export class HeaderComponent {
 
+  menuOpen = false;
+
   private authService: AuthService = inject(AuthService);
   private router: Router = inject(Router)
 
