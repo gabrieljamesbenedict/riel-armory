@@ -205,37 +205,39 @@ div.store-container {
             div.product-info-container {
                 img {
                     width: 100%;
-                    border-bottom: 1px solid lighten(app.$accent-color, 10%);
+                    //border-bottom: 1px solid lighten(app.$accent-color, 10%);
                 }
 
                 h3.product-name {
-                    @include app.title-text(1.5rem, 400); 
-                    color: app.$primary-color;
-                    margin-bottom: 0;
+                    @include app.title-text(1.5rem, 400);
                 }
 
                 p.product-price {
-                    @include app.body-text(1rem, 600); 
-                    color: darken(app.$accent-color, 10%);
-                    margin-bottom: 0;
+                    @include app.body-text(1rem, 600);
                 }
 
                 p.product-stock {
                     @include app.body-text(0.8rem, 600);
-                    color: #666;
-                    margin-bottom: 0;
                 }
 
                 p.product-description {
                     @include app.body-text(0.8rem, 400);
-                    color: #666;
-                    margin-bottom: 0;
                 }
 
                 p.product-tags {
                     @include app.body-text(0.6rem, 700);
-                    color: #666;
+                }
+
+                h3.product-name,
+                p.product-price,
+                p.product-stock,
+                p.product-description,
+                p.product-tags {
+                    color: app.$primary-color;
                     margin-bottom: 0;
+                }
+                p.product-price {
+                    color: darken(app.$accent-color, 15%);
                 }
             }
 

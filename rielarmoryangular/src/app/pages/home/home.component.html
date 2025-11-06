@@ -76,6 +76,7 @@
 
 <div class="store-info">
     <div class="store-info-content">
+        
         <div class="how-to-purchase">
             <h1>
                 How To Purchase A Firearm
@@ -125,10 +126,43 @@
                 </li>
             </ul>
         </div>
+
         <div class="featured-products">
-            <h1>
-                Featured Products
-            </h1>
+            <h1> Featured Products</h1>
+            <div class="featured-products-container">
+                @for (product of products; track product.name) {
+                    <div class="product-card">
+                        <div class="product-info-container">
+                            @if (product.imageName) {
+                                <img 
+                                    [src]="'/api/products/image/' + product.productId" 
+                                    [alt]="product.name"
+                                />
+                            } @else {
+                                <img 
+                                    src="assets/images/gun-not-found.png" 
+                                    [alt]="product.name"
+                                />
+                            }
+                            <h3 class="product-name">{{ product.name }}</h3>
+                            <p class="product-price">{{ product.price | currency:'PHP' }}</p>
+                            <p class="product-stock">In Stock: {{ product.stock }}</p>
+                            <p class="product-description">{{ product.description }}</p>
+                            <p class="product-tags">{{ product.tagNames.join(', ') }}</p>
+                        </div>
+                        <div class="product-button-container">
+                            @if (product.stock > 0) {
+                                <button class="details-button" (click)="storeService.viewProductDetails(product)">
+                                    Buy Now
+                                </button>
+                            } @else {
+                                <button class="details-button" style="background-color: grey; cursor: default;">
+                                    Out of Stock
+                                </button>
+                            }
+                        </div>
+                    </div>
+                }
         </div>
     </div>
 </div>

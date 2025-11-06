@@ -16,6 +16,7 @@ public class JwtUtil {
 
     private static final String SECRET = "abcdefghijklmnopqrstuvwxyz123456";    // Use a 256-bit key minimum (HMAC-SHA256)
     private static final long EXPIRATION_MS = 3 * 24 * 60 * 60 * 1000;          // 36 hours
+    //private static final long EXPIRATION_MS = 10000;
     private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
 
     // Token generator from username

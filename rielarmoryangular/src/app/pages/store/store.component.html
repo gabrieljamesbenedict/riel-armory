@@ -68,24 +68,11 @@
                             [alt]="product.name"
                         />
                     }
-
                     <h3 class="product-name">{{ product.name }}</h3>
-
-                    <p class="product-price">
-                        {{ product.price | currency:'PHP' }}
-                    </p>
-
-                    <p class="product-stock">
-                        In Stock: {{ product.stock }}
-                    </p>
-
-                    <p class="product-description">
-                        {{ product.description }}
-                    </p>
-
-                    <p class="product-tags">
-                        {{ product.tagNames.join(', ') }}
-                    </p>
+                    <p class="product-price">{{ product.price | currency:'PHP' }}</p>
+                    <p class="product-stock">In Stock: {{ product.stock }}</p>
+                    <p class="product-description">{{ product.description }}</p>
+                    <p class="product-tags">{{ product.tagNames.join(', ') }}</p>
                 </div>
 
                 <div class="product-button-container">
