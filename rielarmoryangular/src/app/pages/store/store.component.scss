@@ -50,15 +50,19 @@ div.store-container {
 
 
         @include app.respond("sm") {
-            width: 70vw;
-            height: 100%;
+            width: 80vw;
+            height: calc(100vh - 10vh);
             position: fixed;
-            top: 10vh;
+            top: 0;
             left: calc(15px - 80vw);
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             background-color: app.$primary-color;
             color: white;
             padding: 1rem;
+
+            margin-top: 10vh;
+            padding-bottom: 20vh;
 
             transition: left 400ms ease-in-out;
 
@@ -152,6 +156,12 @@ div.store-container {
                         background-color: lighten(app.$accent-color, 25%); 
                     }
                 }
+            }
+        }
+
+        @include app.respond("sm") {
+            div.category-list {
+                padding-bottom: 30px;
             }
         }
 
