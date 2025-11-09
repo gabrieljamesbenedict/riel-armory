@@ -54,7 +54,7 @@ div.store-container {
             height: calc(100vh - 10vh);
             position: fixed;
             top: 0;
-            left: calc(15px - 80vw);
+            left: calc(-80vw - 30px);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             background-color: app.$primary-color;
@@ -69,7 +69,7 @@ div.store-container {
             &.open {
                 left: 0;
                 button.hamburger {
-                    left: calc(70vw + 25px);
+                    left: calc(80vw + 25px);
                 }
             }
         }
