@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Role } from '../model/role.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,7 +10,9 @@ export class RoleService {
 
   private apiUrl = '/api/roles';
 
-  constructor(private http: HttpClient) { }
+  private http: HttpClient = inject(HttpClient)
+
+  constructor() {}
 
   getAllRoles(): Observable<Role[]> {
     return this.http.get<Role[]>(`${this.apiUrl}/all`);

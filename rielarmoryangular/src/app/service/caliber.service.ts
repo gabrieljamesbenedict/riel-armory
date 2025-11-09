@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Caliber } from '../model/caliber.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,7 +10,9 @@ export class CaliberService {
 
   private apiUrl = '/api/calibers';
 
-  constructor(private http: HttpClient) {}
+  private http: HttpClient = inject(HttpClient)
+
+  constructor() {}
 
   getAllCalibers(): Observable<Caliber[]> {
     return this.http.get<Caliber[]>(`${this.apiUrl}/all`);
