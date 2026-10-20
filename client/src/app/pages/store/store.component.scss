@@ -1,0 +1,285 @@
+@use "../../app.component.scss" as app;
+
+$div-border-debug: false;
+
+div.store-container {
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+
+    min-height: 100vh;
+    padding: 2rem;
+
+    div.store-filter-bar {
+        @if ($div-border-debug) { border: 1px red solid; }
+
+        flex: 0 0 20vw;
+
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        transition: background-color 0.2s ease, color 0.2s ease;
+
+        button.hamburger {
+            display: none;
+            position: fixed;
+            top: 10vh;
+            left: 0;
+            font-size: 4rem;
+            background: app.$primary-color;
+            background-color: rgba(0, 0, 0, 0.7);
+            background-blend-mode: multiply;
+            padding: 0rem 0.5rem;
+
+            border-radius: 0 0 25px 0;
+
+            @include app.respond("sm") {
+                display: block;
+                
+                border: none;
+                cursor: pointer;
+                color: app.$accent-color;
+                z-index: 1000;
+                
+                transition: left 400ms ease-in-out;
+            }
+        }
+
+
+        @include app.respond("sm") {
+            width: 80vw;
+            height: calc(100vh - 10vh);
+            position: fixed;
+            top: 0;
+            left: calc(-80vw - 30px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            background-color: app.$primary-color;
+            color: white;
+            padding: 1rem;
+
+            margin-top: 10vh;
+            padding-bottom: 20vh;
+
+            transition: left 400ms ease-in-out;
+
+            &.open {
+                left: 0;
+                button.hamburger {
+                    left: calc(80vw + 25px);
+                }
+            }
+        }
+
+        @include app.respond("xs") {
+           //width: 80vw;
+        }
+
+        form.search-bar {
+            @if ($div-border-debug) { border: 1px blue solid; }
+
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+
+            input.search-text {
+                flex: 1;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0.5rem;
+
+                @include app.body-text(0.8rem, 400);
+                margin-bottom: 0;
+            }
+
+            button.search-button {
+                flex: 1;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0.5rem;
+                cursor: pointer;
+
+                background-color: app.$accent-color;
+                border: none;
+                color: white;
+
+                @include app.body-text(0.8rem, 400);
+                margin: 0;
+
+                transition: background-color 300ms;
+
+                &:hover {   
+                    background-color: lighten(app.$accent-color, 10%);
+                }
+
+                &:active {
+                    background-color: lighten(app.$accent-color, 25%);
+                }
+            }
+        }
+
+        div.category-list, div.manufacturer-list, div.caliber-list {
+            @if ($div-border-debug) { border: 1px blue solid; }
+
+            h1 {
+                @include app.title-text(2rem, 400);
+                margin-bottom: 0;
+            }
+
+            ul {
+                @include app.body-text(1rem, 400);
+                margin-bottom: 0;
+                padding: 0;
+                list-style: none;
+
+                li {
+                    cursor: pointer;
+                    padding: 4px 8px;
+                    transition: background-color 0.2s ease, color 0.2s ease;
+                    margin-bottom: 2px;
+                    
+                    color: app.$primary-color;
+
+                    @include app.respond("sm") {
+                        color: white;
+                    }
+
+                    &:hover {
+                        background-color: lighten(app.$accent-color, 35%); 
+                        color: darken(app.$primary-color, 10%);
+                    }
+                    &:active {
+                        background-color: lighten(app.$accent-color, 25%); 
+                    }
+                }
+            }
+        }
+
+        @include app.respond("sm") {
+            div.category-list {
+                padding-bottom: 30px;
+            }
+        }
+
+    }
+
+    div.store-body {
+        @if ($div-border-debug) { border: 1px red solid; }
+        
+        flex: 1 1 auto;
+
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+
+        @include app.respond("lg") {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @include app.respond("md") {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include app.respond("xs") {
+            grid-template-columns: repeat(1, 1fr);
+        }
+        
+        div.product-card {
+            
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden; 
+            background-color: #ffffff; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+            
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            padding: 1rem;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+            &>*{
+                @if ($div-border-debug) { border: 1px blue solid; }
+            }
+
+            div.product-info-container {
+                img {
+                    width: 100%;
+                    //border-bottom: 1px solid lighten(app.$accent-color, 10%);
+                }
+
+                h3.product-name {
+                    @include app.title-text(1.5rem, 400);
+                }
+
+                p.product-price {
+                    @include app.body-text(1rem, 600);
+                }
+
+                p.product-stock {
+                    @include app.body-text(0.8rem, 600);
+                }
+
+                p.product-description {
+                    @include app.body-text(0.8rem, 400);
+                }
+
+                p.product-tags {
+                    @include app.body-text(0.6rem, 700);
+                }
+
+                h3.product-name,
+                p.product-price,
+                p.product-stock,
+                p.product-description,
+                p.product-tags {
+                    color: app.$primary-color;
+                    margin-bottom: 0;
+                }
+                p.product-price {
+                    color: darken(app.$accent-color, 15%);
+                }
+            }
+
+            div.product-button-container {
+                .details-button {
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 1rem;
+                    cursor: pointer;
+
+                    background-color: app.$accent-color;
+                    border: none;
+                    color: white;
+
+                    @include app.body-text(0.8rem, 400);
+                    margin-bottom: 0;
+
+                    transition: background-color 300ms;
+
+                    &:hover {   
+                        background-color: lighten(app.$accent-color, 10%);
+                    }
+
+                    &:active {
+                        background-color: lighten(app.$accent-color, 25%);
+                    }
+                }
+            }
+
+            
+        }
+
+    }
+
+}

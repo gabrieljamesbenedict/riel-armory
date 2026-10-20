@@ -1,0 +1,72 @@
+$primary-color: #0b0b13;
+$accent-color: #d53643;
+$text-color: #ffffff;
+$font-family: "Segoe UI";
+
+$screen-breakpoints: (
+  "xs": 480px,  // Phones
+  "sm": 768px,  // Tablets
+  "md": 1024px, // Desktop
+  "lg": 1280px, // L Desktopd
+  "xl": 1600px  // XL Desktop
+);
+
+@mixin app-theme {
+    background-color: $primary-color;
+    color: $text-color;
+    font-family: $font-family;
+}
+
+@mixin div-padding {
+    padding: 4rem 6rem;
+    @include respond("sm") {
+        padding: 2rem 3rem;
+    }
+}
+
+@mixin darken-background-image($url, $amount) {
+    background-image: $url;
+    background-color: rgba(0, 0, 0, $amount);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@mixin respond($breakpoint) {
+  @if map-has-key($screen-breakpoints, $breakpoint) {
+    @media (max-width: map-get($screen-breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "No breakpoint found for #{$breakpoint}";
+  }
+}
+
+@mixin title-text($size, $weight) {
+  font-family: BlackOpsOne, sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  margin: 0 0 1rem 0;
+}
+
+@mixin body-text($size, $weight) {
+  font-family: $font-family, sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  margin: 0 0 1rem 0;
+}
+
+@font-face {
+    font-family: Wallpoet;
+    src: url("/assets/fonts/Wallpoet-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: BlackOpsOne;
+    src: url("/assets/fonts/BlackOpsOne-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

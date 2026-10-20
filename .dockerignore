@@ -13,5 +13,5 @@ target/
 .gitignore
 
 # Node/Angular artifacts
-rielarmoryangular/node_modules
-rielarmoryangular/dist
+client/node_modules
+client/dist
